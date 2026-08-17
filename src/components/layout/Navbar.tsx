@@ -35,15 +35,19 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
           <Link href="/" className="hover:text-emerald-400 transition-colors">
             Home
+          </Link>
+          <Link href="/luxury" className="flex items-center gap-1.5 text-gold-champagne hover:text-white font-semibold transition-colors px-2.5 py-1 rounded-lg bg-gold-metallic/10 border border-gold-metallic/30">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold-metallic animate-pulse" />
+            <span>Luxury Estate</span>
           </Link>
           <Link href="/#projects" className="hover:text-emerald-400 transition-colors">
             Projects
           </Link>
           <Link href="/photos" className="hover:text-emerald-400 transition-colors">
-            Photos & Site Visits
+            Photos & Visits
           </Link>
           <Link href="/about" className="hover:text-emerald-400 transition-colors">
             About Broker
@@ -93,6 +97,14 @@ export const Navbar: React.FC = () => {
             className="block py-2 text-slate-200 hover:text-emerald-400 font-medium"
           >
             Home
+          </Link>
+          <Link
+            href="/luxury"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block py-2 text-gold-champagne font-semibold flex items-center gap-2"
+          >
+            <span className="w-2 h-2 rounded-full bg-gold-metallic animate-pulse" />
+            <span>The Grand Horizon Luxury Estate</span>
           </Link>
           <Link
             href="/#projects"
