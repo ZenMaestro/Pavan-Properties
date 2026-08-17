@@ -9,12 +9,23 @@
   --font-outfit: 'Outfit', sans-serif;
   --font-playfair: 'Playfair Display', serif;
   --font-cormorant: 'Cormorant Garamond', serif;
+
+  /* Brand Palette Variables */
+  --gunmetal: #142334;
+  --gunmetal-dark: #0c1622;
+  --gunmetal-light: #23374e;
+  --rodeo-dust: #c9ad98;
+  --rodeo-light: #dac7b8;
+  --rodeo-dark: #a67d64;
+  --platinum: #eae3e0;
+  --springwood: #f9f6ee;
+  --white: #ffffff;
 }
 
 body {
   font-family: var(--font-inter);
-  background-color: #020408;
-  color: #f8fafc;
+  background-color: #142334;
+  color: #f9f6ee;
   overflow-x: hidden;
 }
 
@@ -30,53 +41,85 @@ h1, h2, h3, h4, .font-display {
   font-family: var(--font-cormorant);
 }
 
-/* Glassmorphism & Metallic Luxury Panels */
+/* Glassmorphism & Luxury Panels using Brand Colors */
 .glass-panel {
-  background: rgba(8, 14, 26, 0.75);
+  background: rgba(20, 35, 52, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(234, 227, 224, 0.12);
 }
 
 .glass-panel-luxury {
-  background: radial-gradient(circle at 50% 0%, rgba(13, 23, 42, 0.85) 0%, rgba(3, 5, 8, 0.95) 100%);
+  background: radial-gradient(circle at 50% 0%, rgba(35, 55, 78, 0.92) 0%, rgba(12, 22, 34, 0.98) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(201, 173, 152, 0.35);
 }
 
 .glass-card-luxury {
-  background: linear-gradient(145deg, rgba(14, 23, 38, 0.6) 0%, rgba(4, 7, 13, 0.85) 100%);
+  background: linear-gradient(145deg, rgba(35, 55, 78, 0.55) 0%, rgba(12, 22, 34, 0.85) 100%);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(234, 227, 224, 0.1);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card-luxury:hover {
-  border-color: rgba(212, 175, 55, 0.45);
-  box-shadow: 0 20px 40px -15px rgba(212, 175, 55, 0.12);
+  border-color: rgba(201, 173, 152, 0.55);
+  box-shadow: 0 20px 40px -15px rgba(201, 173, 152, 0.2);
   transform: translateY(-4px);
 }
 
-/* Metallic Gradients & Shimmer */
+.glass-card {
+  background: linear-gradient(135deg, rgba(35, 55, 78, 0.45) 0%, rgba(12, 22, 34, 0.85) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(234, 227, 224, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(201, 173, 152, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(201, 173, 152, 0.18);
+  transform: translateY(-3px);
+}
+
+.glass-panel-gold {
+  background: rgba(25, 42, 62, 0.9);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 173, 152, 0.35);
+}
+
+/* Metallic & Gold Text using Rodeo Dust (#c9ad98) + Spring Wood (#f9f6ee) */
 .metallic-gold-text {
-  background: linear-gradient(135deg, #f5e6b3 0%, #d4af37 40%, #e6ca65 70%, #aa8024 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f9f6ee 25%, #dac7b8 50%, #c9ad98 80%, #a67d64 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .metallic-silver-text {
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #eae3e0 50%, #c5b5ad 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .metallic-gold-border {
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border: 1px solid rgba(201, 173, 152, 0.4);
 }
 
 .metallic-gold-glow {
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 30px rgba(201, 173, 152, 0.2);
+}
+
+/* Badges with Rodeo Dust & Platinum */
+.badge-verified {
+  background: linear-gradient(90deg, rgba(201, 173, 152, 0.15) 0%, rgba(201, 173, 152, 0.28) 100%);
+  border: 1px solid rgba(201, 173, 152, 0.45);
+  color: #dac7b8;
+}
+
+.badge-gold {
+  background: linear-gradient(90deg, rgba(201, 173, 152, 0.18) 0%, rgba(201, 173, 152, 0.32) 100%);
+  border: 1px solid rgba(201, 173, 152, 0.5);
+  color: #c9ad98;
 }
 
 /* Custom Scrollbar */
@@ -84,12 +127,12 @@ h1, h2, h3, h4, .font-display {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #020408;
+  background: #0c1622;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #23374e;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4af37;
+  background: #c9ad98;
 }

@@ -39,8 +39,8 @@ export const ProofStrip: React.FC = () => {
           const Icon = stat.icon;
           return (
             <div key={idx} className={`flex items-start gap-4 ${idx !== 0 ? 'sm:pl-6 pt-4 sm:pt-0' : ''}`}>
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-emerald-500/20 border border-amber-500/30 flex items-center justify-center shrink-0">
-                <Icon className="w-6 h-6 text-amber-400" />
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-rodeo-500/20 to-platinum-400/20 border border-rodeo-400/30 flex items-center justify-center shrink-0">
+                <Icon className="w-6 h-6 text-rodeo-400" />
               </div>
               <div>
                 <div className="font-display font-extrabold text-xl sm:text-2xl text-white tracking-tight">

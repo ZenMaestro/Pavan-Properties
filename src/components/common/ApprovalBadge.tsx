@@ -34,9 +34,9 @@ export const ApprovalBadge: React.FC<ApprovalBadgeProps> = ({
     : 'px-3 py-1.5 text-xs';
 
   const colorClasses = isLp
-    ? 'bg-amber-950/60 text-amber-300 border border-amber-500/40 shadow-sm shadow-amber-950'
+    ? 'bg-gunmetal-900 text-rodeo-300 border border-rodeo-400/40 shadow-sm shadow-amber-950'
     : isRera
-    ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/40'
+    ? 'bg-gunmetal-800 text-platinum-200 border border-platinum-400/30'
     : isBank
     ? 'bg-blue-950/60 text-blue-300 border border-blue-500/40'
     : 'bg-slate-800/80 text-slate-200 border border-slate-700';

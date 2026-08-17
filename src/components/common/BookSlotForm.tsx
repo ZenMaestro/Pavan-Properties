@@ -84,20 +84,20 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
     );
 
     return (
-      <div className={`glass-card p-8 rounded-2xl border border-emerald-500/50 text-center space-y-6 animate-in zoom-in-95 duration-200 ${className}`}>
-        <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-500 flex items-center justify-center mx-auto text-emerald-400">
+      <div className={`glass-card p-8 rounded-2xl border border-rodeo-400/50 text-center space-y-6 animate-in zoom-in-95 duration-200 ${className}`}>
+        <div className="w-16 h-16 rounded-full bg-rodeo-500/20 border-2 border-rodeo-400 flex items-center justify-center mx-auto text-rodeo-400">
           <CheckCircle2 className="w-10 h-10 animate-bounce" />
         </div>
 
         <div>
-          <span className="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30 uppercase tracking-wider">
+          <span className="bg-rodeo-500/20 text-rodeo-300 text-xs font-bold px-3 py-1 rounded-full border border-rodeo-400/30 uppercase tracking-wider">
             Slot Booking Confirmed
           </span>
           <h3 className="font-display font-extrabold text-2xl text-white mt-3">
             Thank You, {formData.name}!
           </h3>
           <p className="text-slate-300 text-sm mt-2 max-w-md mx-auto leading-relaxed">
-            Your site visit slot for <strong className="text-emerald-400">{selectedProjectObj?.name}</strong> has been logged. Pavan Kumar will call you at <strong className="text-white">{formData.phone}</strong> shortly.
+            Your site visit slot for <strong className="text-rodeo-400">{selectedProjectObj?.name}</strong> has been logged. Pavan Kumar will call you at <strong className="text-white">{formData.phone}</strong> shortly.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
           </div>
           <div className="flex items-center justify-between text-slate-400">
             <span>Contact Mobile:</span>
-            <span className="font-semibold text-emerald-400">{formData.phone}</span>
+            <span className="font-semibold text-rodeo-400">{formData.phone}</span>
           </div>
         </div>
 
@@ -122,7 +122,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
             href={`https://wa.me/${BROKER_INFO.whatsapp}?text=${waText}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-sm shadow-lg shadow-emerald-950 transition-all transform active:scale-95"
+            className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-gradient-to-r from-rodeo-500 to-rodeo-400 text-gunmetal-950 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-sm shadow-lg shadow-emerald-950 transition-all transform active:scale-95"
           >
             <MessageSquare className="w-5 h-5" />
             <span>Connect on WhatsApp Instantly</span>
@@ -175,7 +175,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
         {/* Full Name */}
         <div>
           <label className="block text-xs font-medium text-slate-300 mb-1">
-            Full Name <span className="text-emerald-400">*</span>
+            Full Name <span className="text-rodeo-400">*</span>
           </label>
           <div className="relative">
             <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
@@ -186,7 +186,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
               value={formData.name}
               onChange={handleChange}
               placeholder="e.g. R. K. Varma"
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-rodeo-400 focus:ring-1 focus:ring-rodeo-400 transition-all"
             />
           </div>
         </div>
@@ -194,7 +194,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
         {/* Mobile Phone */}
         <div>
           <label className="block text-xs font-medium text-slate-300 mb-1">
-            Mobile Number (10 Digits) <span className="text-emerald-400">*</span>
+            Mobile Number (10 Digits) <span className="text-rodeo-400">*</span>
           </label>
           <div className="relative">
             <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
@@ -206,7 +206,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
               value={formData.phone}
               onChange={handleChange}
               placeholder="e.g. 98765 43210"
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-rodeo-400 focus:ring-1 focus:ring-rodeo-400 transition-all"
             />
           </div>
         </div>
@@ -220,7 +220,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
             name="projectInterest"
             value={formData.projectInterest}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+            className="w-full px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white text-sm focus:outline-none focus:border-rodeo-400 focus:ring-1 focus:ring-rodeo-400 transition-all"
           >
             {PROJECTS.map(proj => (
               <option key={proj.id} value={proj.slug} className="bg-slate-900 text-white">
@@ -244,7 +244,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="name@gmail.com"
-                className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-emerald-500 transition-all"
+                className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-rodeo-400 transition-all"
               />
             </div>
           </div>
@@ -260,7 +260,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
                 name="preferredDate"
                 value={formData.preferredDate}
                 onChange={handleChange}
-                className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white text-xs sm:text-sm focus:outline-none focus:border-emerald-500 transition-all"
+                className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white text-xs sm:text-sm focus:outline-none focus:border-rodeo-400 transition-all"
               />
             </div>
           </div>
@@ -277,7 +277,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
             value={formData.message}
             onChange={handleChange}
             placeholder="e.g. Need 200 sq.yd corner plot with SBI loan..."
-            className="w-full px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-emerald-500 transition-all"
+            className="w-full px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-rodeo-400 transition-all"
           />
         </div>
 
@@ -285,7 +285,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
         <button
           type="submit"
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-sm shadow-xl shadow-emerald-950/60 transition-all transform active:scale-98 disabled:opacity-50"
+          className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-rodeo-500 via-rodeo-400 to-rodeo-500 text-gunmetal-950 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-sm shadow-xl shadow-emerald-950/60 transition-all transform active:scale-98 disabled:opacity-50"
         >
           {loading ? (
             <span>Logging Slot Booking...</span>
@@ -299,7 +299,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
 
         {/* Trust Guarantee Note */}
         <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400 pt-1">
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+          <ShieldCheck className="w-3.5 h-3.5 text-rodeo-400" />
           <span>No Spam Guarantee • Free AC Cab Transport Provided</span>
         </div>
 
