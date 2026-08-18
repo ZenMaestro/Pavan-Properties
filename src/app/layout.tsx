@@ -43,7 +43,7 @@ export default function RootLayout({
     image: 'https://pavanproperties.in/pavan-kumar.png',
     '@id': 'https://pavanproperties.in',
     url: 'https://pavanproperties.in',
-    telephone: '+919876543210',
+    telephone: '+919030444978',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Door No. 40-1-12, 3rd Floor, Opposite PVP Square Mall, M.G. Road',

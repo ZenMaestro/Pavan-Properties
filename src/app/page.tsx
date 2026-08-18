@@ -19,6 +19,7 @@ import {
 import { PROJECTS, BROKER_INFO } from '@/data/projects';
 import { ProjectCard } from '@/components/common/ProjectCard';
 import { BookSlotForm } from '@/components/common/BookSlotForm';
+import { AnviHomesShowcase } from '@/components/common/AnviHomesShowcase';
 
 export default function HomePage() {
   return (
@@ -116,6 +117,11 @@ export default function HomePage() {
 
           </div>
         </div>
+      </section>
+
+      {/* SECTION: ANVI HOMES OFFICIAL SHOWCASE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnviHomesShowcase />
       </section>
 
       {/* SECTION 2: FEATURED PROPERTIES */}

@@ -199,7 +199,7 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
               maxLength={12}
               value={formData.phone}
               onChange={handleChange}
-              placeholder="e.g. 98765 43210"
+              placeholder="e.g. 90304 44978"
               className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#ffffff] border border-[#eae3e0] text-[#142334] placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-[#c9ad98] focus:ring-1 focus:ring-[#c9ad98] transition-all"
             />
           </div>

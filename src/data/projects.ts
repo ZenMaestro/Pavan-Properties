@@ -2,91 +2,117 @@ import { Project } from '@/types';
 
 export const PROJECTS: Project[] = [
   {
-    id: 'proj-amaravati-royal-palms',
-    slug: 'amaravati-royal-palms',
-    name: 'Amaravati Royal Palms',
-    tagline: 'CRDA Approved Master-Planned Mega Township near Capital City Zone',
-    location: 'Mangalagiri-Neerukonda Main Road, Amaravati',
-    city: 'Amaravati / Vijayawada',
-    priceFrom: '₹32.5 Lakhs',
+    id: 'proj-anvi-homes-kesarapalli',
+    slug: 'anvi-homes-kesarapalli',
+    name: 'Anvi Homes — Open Plots, Villas & Independent Houses',
+    tagline: '100 Feet Airport-West Bypass Road Facing Project in Kesarapalli, Vijayawada',
+    location: 'Kesarapalli, Vijayawada (100 Ft Airport-West Bypass Connective Road Facing)',
+    city: 'Kesarapalli / Vijayawada',
+    priceFrom: '₹32.5 Lakhs (Plots) / ₹1.20 Cr* (Luxury Villas)',
     pricePerSqYd: '₹18,500 / sq.yd',
-    totalArea: '45 Acres',
+    totalArea: '40+ Acres Master Planned Layout',
     plotSizes: '167, 200, 267 & 500 Sq. Yds',
-    lpNumber: 'LP No. 30/2025/CRDA',
-    reraId: 'AP RERA P072200192',
+    lpNumber: 'LP No. 30/2025',
+    reraId: 'AP RERA Approved Project',
     highlights: [
-      '3.5 km to Amaravati Airport Road',
-      '40 ft & 60 ft Heavy Duty CC Roads',
-      'Underground Electricity & Sewage Lines',
-      'Avenue Plantation & Central Park with Clubhouse',
-      '100% Clear Title & Immediate Spot Registration'
+      '100 Feet Airport – West Bypass Connective Road Facing',
+      '3.5 Km to Vijayawada International Airport',
+      '3.0 Km to HCL Tech Meda Towers',
+      '3.5 Km to West Bypass Highway',
+      'Luxury Custom-Built Villas (Ground Floor, G+1, Duplex) from ₹1.20 Cr*',
+      '40 Feet Heavy-Duty CC Roads with Grand Entrance Arch',
+      'Underground Drainage, Street Lights & Avenue Plantation',
+      'Overhead Water Tank with Individual Tap Connections'
     ],
     approvals: [
-      'CRDA Approved Layout',
-      'AP RERA Registered',
-      'Bank Loan Facility (SBI, HDFC, ICICI)',
-      '100% Clear Title Legal Guarantee'
+      'APCRDA Approved Layout (LP No. 30/2025)',
+      'AP RERA Approved Project',
+      'Bank Loan Facility Available (SBI, HDFC, ICICI)',
+      'Clear Title & Immediate Spot Registration'
     ],
     verifiedDocs: [
       {
         id: 'doc-crda-30-2025',
-        title: 'CRDA Layout Final Approval Order',
+        title: 'APCRDA Layout Sanction Order LP No. 30/2025',
         type: 'CRDA',
-        documentNumber: 'CRDA/LP/30/2025',
-        issuedBy: 'AP Capital Region Development Authority',
-        issuedDate: '15 Jan 2025',
-        previewUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1000&q=80',
-        summary: 'Official sanction order confirming 100% compliance with CRDA master plan, open spaces handover, and CC road width approvals.'
+        documentNumber: 'LP No. 30/2025',
+        issuedBy: 'Andhra Pradesh Capital Region Development Authority (APCRDA)',
+        issuedDate: '2025 Sanction',
+        previewUrl: '/projects/anvi-homes-1.jpg',
+        summary: 'Official APCRDA sanction confirming 100-foot connective road frontage, 40-foot internal CC roads, park spaces, and statutory approvals.'
       },
       {
-        id: 'doc-rera-0722',
-        title: 'AP RERA Registration Certificate',
+        id: 'doc-rera-anvi',
+        title: 'AP RERA Project Approval Certificate',
         type: 'RERA',
-        documentNumber: 'P072200192',
-        issuedBy: 'Andhra Pradesh Real Estate Regulatory Authority',
-        issuedDate: '02 Feb 2025',
-        previewUrl: 'https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=1000&q=80',
-        summary: 'RERA project clearance certificate ensuring buyer funds security, timely handover guarantee, and strict statutory escrow maintenance.'
+        documentNumber: 'AP RERA Approved',
+        issuedBy: 'AP Real Estate Regulatory Authority',
+        issuedDate: '2025 Registration',
+        previewUrl: '/projects/anvi-homes-3.jpg',
+        summary: 'Official statutory registration ensuring buyer funds safety, development completion, and compliance.'
       },
       {
-        id: 'doc-bank-loan-sbi',
-        title: 'SBI & HDFC Approved Project Letter',
+        id: 'doc-bank-loan-anvi',
+        title: 'Nationalized Bank Loan Facility Letter',
         type: 'BANK',
-        documentNumber: 'AP-APL-2025-884',
-        issuedBy: 'State Bank of India & HDFC Bank National Approvals',
-        issuedDate: '10 Feb 2025',
-        previewUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1000&q=80',
-        summary: 'Direct bank loan pre-approval letter for up to 80% valuation for eligible buyers with spot sanction process.'
+        documentNumber: 'SBI & Leading Banks Facility',
+        issuedBy: 'Leading Nationalized & Private Banks',
+        issuedDate: 'Pre-Approved Project',
+        previewUrl: '/projects/anvi-homes-2.jpg',
+        summary: 'Direct housing loan pre-approval facility for up to 80% valuation for open plots and custom villa construction.'
       }
     ],
     images: [
-      'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80'
+      '/projects/anvi-homes-1.jpg',
+      '/projects/anvi-homes-3.jpg',
+      '/projects/anvi-homes-2.jpg',
+      '/projects/anvi-homes-4.jpg'
     ],
-    overview: 'Amaravati Royal Palms is a premium 45-acre master-planned residential township strategically situated on the Mangalagiri-Neerukonda growth corridor. Designed for high appreciation and immediate luxury home construction, every plot features 100% Vastu compliance, underground utilities, and government-approved infrastructure. Backed by full CRDA Sanction order LP No. 30/2025.',
+    overview: 'Anvi Homes (L.P. No. 30/2025) is an elite residential development strategically located in Kesarapalli, Vijayawada with direct 100 Feet Airport-West Bypass Road frontage. Featuring open plots, luxury villas, and independent houses constructed as per custom buyer requirements (Ground Floor, G+1, Duplex) starting at ₹1.20 Cr*. Equipped with 40-foot CC roads, underground drainage, overhead water tank, clubhouse, children\'s park, and 24/7 gated security.',
     specifications: [
       {
-        category: 'Road Infrastructure',
-        details: ['60 ft Main Entrance Avenue Road', '40 ft Internal Blacktop CC Roads with LED Streetlights']
+        category: 'Connectivity & Location',
+        details: [
+          'Direct 100 Feet Airport – West Bypass Connective Road Facing',
+          '3.5 Km to Vijayawada International Airport (Gannavaram)',
+          '3.0 Km to HCL Tech Meda Towers',
+          '3.5 Km to West Bypass Express Corridor'
+        ]
+      },
+      {
+        category: 'Roads & Infrastructure',
+        details: [
+          '40 Feet Concrete CC Roads',
+          'Grand Decorative Entrance Arch & Compound Wall with Gate',
+          'Underground Drainage System & Rainwater Harvesting Pits',
+          'Street Lighting & Lush Avenue Plantation'
+        ]
       },
       {
         category: 'Water & Utilities',
-        details: ['Dedicated Overhead Water Tank & Sump', 'Underground Drainage & Underground Power Distribution Cables']
+        details: [
+          'Dedicated Overhead Water Tank & Central Sump',
+          'Individual Water Tap Connection to Every Plot',
+          '24/7 Security Post & Children\'s Play Park',
+          'Clubhouse with Community Amenities'
+        ]
       },
       {
-        category: 'Security & Amenities',
-        details: ['Compound Wall with 24/7 Grand Arch Security Post', 'Children Play Arena & Landscaped Botanical Gardens']
+        category: 'Custom House Construction Options',
+        details: [
+          'Ground Floor Independent Houses',
+          'G+1 Luxury Contemporary Houses',
+          'Duplex Architectural Villas from ₹1.20 Cr*'
+        ]
       }
     ],
-    bankTieUps: ['State Bank of India (SBI)', 'HDFC Bank', 'ICICI Bank', 'Axis Bank', 'Union Bank of India'],
-    googleMapEmbedUrl: 'https://maps.google.com/maps?q=Mangalagiri,Andhra+Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed'
+    bankTieUps: ['State Bank of India (SBI)', 'HDFC Bank', 'ICICI Bank', 'Axis Bank', 'Canara Bank'],
+    googleMapEmbedUrl: 'https://maps.google.com/maps?q=Kesarapalli,Vijayawada,Andhra+Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed'
   },
   {
     id: 'proj-capital-heights',
     slug: 'capital-heights-villas',
-    name: 'Capital Heights Luxury Gated Community',
+    name: 'Capital Heights Gated Community',
     tagline: 'CRDA & AP RERA Approved Luxury Villa & Plot Township on Vijayawada-Guntur Expressway',
     location: 'Near AIIMS & NRI Hospital Junction, Vijayawada Expressway',
     city: 'Vijayawada / Guntur Corridor',
@@ -117,27 +143,16 @@ export const PROJECTS: Project[] = [
         documentNumber: 'CRDA/LP/14/2024',
         issuedBy: 'AP Capital Region Development Authority',
         issuedDate: '10 Nov 2024',
-        previewUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1000&q=80',
+        previewUrl: '/projects/anvi-homes-4.jpg',
         summary: 'Final layout release approval certificate confirming all open space, park land, and road allocations transferred to authority.'
-      },
-      {
-        id: 'doc-rera-0388',
-        title: 'RERA Registration Certificate',
-        type: 'RERA',
-        documentNumber: 'P072200388',
-        issuedBy: 'AP RERA Authority',
-        issuedDate: '28 Nov 2024',
-        previewUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1000&q=80',
-        summary: 'Registered residential development authorization guarantee.'
       }
     ],
     images: [
+      '/projects/anvi-homes-4.jpg',
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80'
     ],
-    overview: 'Capital Heights is a benchmark luxury gated community situated right along the booming Vijayawada-Guntur high-speed growth corridor. Offering high-grade infrastructure, underground optic fiber connectivity, plush club amenities, and 100% legal verification under LP No. 14/2024.',
+    overview: 'Capital Heights is a benchmark residential community situated along the Vijayawada-Guntur high-speed growth corridor. Offering high-grade infrastructure, underground utilities, plush club amenities, and 100% legal verification under LP No. 14/2024.',
     specifications: [
       {
         category: 'Clubhouse Features',
@@ -164,9 +179,9 @@ export const BROKER_INFO = {
   activeProjectsCount: 12,
   totalClientsServed: '2,400+',
   totalLoansFacilitated: '₹180+ Crores',
-  phone: '+91 98765 43210',
-  whatsapp: '919876543210',
+  phone: '+91 90304 44978',
+  whatsapp: '919030444978',
   email: 'contact@pavanproperties.in',
   officeAddress: 'Door No. 40-1-12, 3rd Floor, Opposite PVP Square Mall, M.G. Road, Vijayawada, Andhra Pradesh - 520010',
-  bio: 'For over 15 years, Pavan Properties has pioneered legal-first real estate advisory across Andhra Pradesh and Telangana. Unlike brokers who showcase glossy unapproved renders, we specialize exclusively in 100% verified paperwork listings—with CRDA layout releases, AP RERA registrations, and bank loan pre-approvals ready for instant verification before a single rupee is exchanged.'
+  bio: 'For over 15 years, Pavan Properties has pioneered verified real estate advisory across Andhra Pradesh. We specialize in APCRDA approved layouts and AP RERA registered developments with 100-foot road connectivity, verified documentation, and direct bank pre-approvals.'
 };
