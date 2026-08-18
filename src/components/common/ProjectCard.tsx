@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { MapPin, ArrowRight, ShieldCheck, FileCheck, Landmark, CheckCircle2 } from 'lucide-react';
+import { MapPin, ArrowRight, FileCheck, Check, Calendar } from 'lucide-react';
 import { Project, VerifiedDoc } from '@/types';
 import { ApprovalBadge } from './ApprovalBadge';
 import { DocumentViewerModal } from './DocumentViewerModal';
@@ -15,88 +15,95 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [activeDoc, setActiveDoc] = useState<VerifiedDoc | null>(null);
 
   return (
-    <div className="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group border border-slate-800 hover:border-rodeo-400/40 transition-all duration-300">
+    <div className="editorial-card overflow-hidden flex flex-col justify-between group">
       <div>
         
-        {/* Project Thumbnail with LP Number Overlay */}
-        <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+        {/* Project Photography */}
+        <div className="relative aspect-[16/10] overflow-hidden bg-[#f4f0ea]">
           <img
             src={project.images[0]}
             alt={project.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-
-          {/* Top LP Number Badge */}
-          <div className="absolute top-3 left-3 bg-gunmetal-950 text-rodeo-300 border-rodeo-400/40 font-mono text-xs font-bold px-3 py-1 rounded-lg border border-amber-500/50 backdrop-blur-md shadow-lg">
+          
+          {/* Subtle LP Number Tag */}
+          <div className="absolute top-3 left-3 bg-[#ffffff]/95 backdrop-blur-sm text-[#142334] font-mono text-[11px] font-semibold px-2.5 py-1 rounded border border-[#eae3e0] shadow-sm">
             {project.lpNumber}
           </div>
 
-          {/* Top RERA Badge */}
-          <div className="absolute top-3 right-3 bg-gunmetal-900 text-rodeo-300 text-xs font-semibold px-2.5 py-1 rounded-lg border border-rodeo-400/50 backdrop-blur-md flex items-center gap-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-rodeo-400" />
-            <span>{project.reraId.replace('AP RERA ', '')}</span>
-          </div>
-
-          {/* Location & Price Overlay */}
-          <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-            <div className="text-xs text-slate-300 flex items-center gap-1 bg-slate-950/80 px-2.5 py-1 rounded-md backdrop-blur-md border border-slate-800">
-              <MapPin className="w-3.5 h-3.5 text-rodeo-400" />
-              <span>{project.city}</span>
-            </div>
-            <div className="text-right bg-slate-950/90 px-3 py-1 rounded-lg border border-rodeo-400/30 backdrop-blur-md">
-              <span className="text-[10px] text-slate-400 block uppercase">Starting From</span>
-              <span className="font-display font-extrabold text-lg text-rodeo-400">{project.priceFrom}</span>
-            </div>
+          {/* RERA Tag */}
+          <div className="absolute top-3 right-3 bg-[#ffffff]/95 backdrop-blur-sm text-[#142334] text-[11px] font-medium px-2.5 py-1 rounded border border-[#eae3e0] shadow-sm">
+            {project.reraId}
           </div>
         </div>
 
-        {/* Card Body */}
+        {/* Card Content */}
         <div className="p-6 space-y-4">
           
-          <div>
-            <h3 className="font-display font-bold text-xl text-white group-hover:text-rodeo-400 transition-colors">
-              {project.name}
-            </h3>
-            <p className="text-xs text-slate-400 mt-1 line-clamp-2 leading-relaxed">
-              {project.tagline}
-            </p>
+          {/* Title & Location */}
+          <div className="space-y-1">
+            <div className="flex items-baseline justify-between gap-2">
+              <h3 className="font-serif font-bold text-xl text-[#142334] group-hover:text-[#a67d64] transition-colors">
+                {project.name}
+              </h3>
+            </div>
+            
+            <div className="flex items-center gap-1.5 text-xs text-[#5c4438]">
+              <MapPin className="w-3.5 h-3.5 text-[#a67d64] shrink-0" />
+              <span>{project.location}</span>
+            </div>
           </div>
 
-          {/* Key Highlights */}
-          <div className="space-y-1.5 pt-1">
-            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
-              Verified Highlights:
-            </span>
-            <ul className="grid grid-cols-1 gap-1 text-xs text-slate-300">
+          {/* Pricing Row */}
+          <div className="p-3.5 rounded-lg bg-[#f9f6ee] border border-[#eae3e0] flex items-center justify-between text-xs">
+            <div>
+              <span className="text-[11px] text-[#715343] block">Starting Price</span>
+              <span className="font-sans font-bold text-base text-[#142334]">{project.priceFrom}</span>
+            </div>
+            {project.pricePerSqYd && (
+              <div className="text-right">
+                <span className="text-[11px] text-[#715343] block">Rate</span>
+                <span className="font-medium text-[#142334]">{project.pricePerSqYd}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Key Property Specs */}
+          <div className="grid grid-cols-2 gap-2 text-xs text-[#142334] pt-1">
+            <div className="text-slate-600">
+              <span className="text-[11px] text-[#715343] block">Total Area</span>
+              <span className="font-medium">{project.totalArea}</span>
+            </div>
+            <div className="text-slate-600">
+              <span className="text-[11px] text-[#715343] block">Plot Sizes</span>
+              <span className="font-medium">{project.plotSizes}</span>
+            </div>
+          </div>
+
+          {/* Highlights List */}
+          <div className="space-y-1.5 pt-2 border-t border-[#eae3e0]">
+            <ul className="space-y-1 text-xs text-[#344f6d]">
               {project.highlights.slice(0, 3).map((hl, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-rodeo-400 shrink-0" />
-                  <span className="truncate">{hl}</span>
+                <li key={i} className="flex items-start gap-2">
+                  <Check className="w-3.5 h-3.5 text-[#a67d64] shrink-0 mt-0.5" />
+                  <span className="leading-snug">{hl}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Approval Badges */}
-          <div className="flex flex-wrap gap-1.5 pt-2 border-t border-slate-800/80">
-            {project.approvals.map((app, idx) => (
-              <ApprovalBadge key={idx} label={app} size="sm" />
-            ))}
-          </div>
-
-          {/* Paperwork Document Viewer Quick Trigger */}
+          {/* Official Verification Document Inspection */}
           {project.verifiedDocs.length > 0 && (
             <div className="pt-2">
               <button
                 onClick={() => setActiveDoc(project.verifiedDocs[0])}
-                className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-amber-950/30 hover:bg-amber-950/50 border border-amber-500/30 text-amber-300 text-xs font-medium transition-colors"
+                className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-[#ffffff] hover:bg-[#f4f0ea] border border-[#eae3e0] text-xs text-[#142334] font-medium transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <FileCheck className="w-4 h-4 text-amber-400" />
-                  <span>Inspect Official CRDA Permit</span>
+                  <FileCheck className="w-3.5 h-3.5 text-[#a67d64]" />
+                  <span>Inspect CRDA Layout Sanction Copy</span>
                 </div>
-                <span className="text-[10px] text-amber-400 underline font-semibold">View Copy</span>
+                <span className="text-[11px] text-[#a67d64] font-semibold underline">View</span>
               </button>
             </div>
           )}
@@ -104,25 +111,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </div>
 
-      {/* Card Footer Actions */}
+      {/* Card Actions */}
       <div className="p-6 pt-0 grid grid-cols-2 gap-3">
         <Link
           href={`/property/${project.slug}`}
-          className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors"
+          className="btn-secondary text-xs py-2.5"
         >
-          <span>Full Details</span>
+          <span>View Details</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
 
-        <Link
-          href={`/property/${project.slug}#book-slot`}
-          className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-gradient-to-r from-rodeo-500 to-rodeo-400 text-gunmetal-950 hover:from-emerald-500 hover:to-emerald-400 text-white text-xs font-bold shadow-md shadow-emerald-950 transition-all"
+        <a
+          href="#book-visit"
+          className="btn-primary text-xs py-2.5"
         >
-          <span>Book Slot</span>
-        </Link>
+          <Calendar className="w-3.5 h-3.5" />
+          <span>Book Visit</span>
+        </a>
       </div>
 
-      {/* Modal for Paperwork Verification */}
+      {/* Verification Modal */}
       <DocumentViewerModal
         doc={activeDoc}
         onClose={() => setActiveDoc(null)}

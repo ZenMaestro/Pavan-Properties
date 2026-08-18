@@ -2,131 +2,140 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck, FileCheck, Phone, ArrowRight, CheckCircle2, Award, Landmark, Sparkles, Building2, MapPin } from 'lucide-react';
+import { 
+  FileCheck, 
+  Phone, 
+  ArrowRight, 
+  MapPin, 
+  Check, 
+  Calendar, 
+  Shield, 
+  Landmark, 
+  Building, 
+  Clock, 
+  Compass,
+  ArrowUpRight
+} from 'lucide-react';
 import { PROJECTS, BROKER_INFO } from '@/data/projects';
-import { ProofStrip } from '@/components/common/ProofStrip';
 import { ProjectCard } from '@/components/common/ProjectCard';
 import { BookSlotForm } from '@/components/common/BookSlotForm';
 
 export default function HomePage() {
   return (
-    <div className="space-y-16 pb-16">
+    <div className="space-y-20 pb-20">
       
-      {/* SECTION 1: HERO */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-8 pb-16 overflow-hidden">
-        
-        {/* Ambient Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-tr from-rodeo-500/25 via-platinum-300/10 to-transparent blur-3xl pointer-events-none rounded-full" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* SECTION 1: EDITORIAL SPLIT HERO */}
+      <section className="pt-8 sm:pt-14 pb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
-            {/* Left Col: Core Value Prop */}
-            <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Left Col: Core Value Proposition */}
+            <div className="lg:col-span-6 space-y-6">
               
-              {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gunmetal-900 border border-rodeo-400/40 text-rodeo-300 text-xs font-semibold shadow-inner">
-                <ShieldCheck className="w-4 h-4 text-rodeo-400" />
-                <span>100% Legal Paperwork Guaranteed • Zero Unverified Plots</span>
+              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#715343]">
+                <MapPin className="w-3.5 h-3.5 text-[#a67d64]" />
+                <span>Amaravati & Vijayawada • Real Estate Advisory</span>
               </div>
 
-              {/* Main Headline */}
-              <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.15]">
-                Verified Paperwork <br className="hidden sm:inline" />
-                <span className="bg-gradient-to-r from-springwood-50 via-rodeo-300 to-rodeo-500 bg-clip-text text-transparent">
-                  Real Estate in Amaravati
-                </span>
+              <h1 className="font-serif font-bold text-3xl sm:text-5xl text-[#142334] tracking-tight leading-[1.15]">
+                Property decisions backed by real verification.
               </h1>
 
-              <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
-                We don&apos;t just show glossy 3D renders—we prove legal title with official <strong className="text-amber-300 font-semibold">CRDA Sanction Orders</strong>, <strong className="text-rodeo-400 font-semibold">AP RERA Registrations</strong>, and pre-approved bank loans before you inspect a single plot.
+              <p className="text-base sm:text-lg text-[#344f6d] leading-relaxed font-normal">
+                Pavan Properties specializes exclusively in CRDA sanctioned layouts and AP RERA registered developments. We provide original sanction orders and encumbrance records before you visit a site.
               </p>
 
-              {/* Verified Proof Badges Bar */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-                <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-2.5 text-xs text-slate-200">
-                  <FileCheck className="w-5 h-5 text-rodeo-400 shrink-0" />
-                  <div>
-                    <span className="font-bold text-white block">CRDA Sanctioned</span>
-                    <span className="text-[10px] text-slate-400">Layout Plans Released</span>
-                  </div>
-                </div>
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <a
+                  href="#book-visit"
+                  className="btn-primary"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>Book a Site Visit</span>
+                </a>
 
-                <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-2.5 text-xs text-slate-200">
-                  <ShieldCheck className="w-5 h-5 text-amber-400 shrink-0" />
-                  <div>
-                    <span className="font-bold text-white block">AP RERA Registered</span>
-                    <span className="text-[10px] text-slate-400">Escrow Protected</span>
-                  </div>
-                </div>
-
-                <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center gap-2.5 text-xs text-slate-200 col-span-2 sm:col-span-1">
-                  <Landmark className="w-5 h-5 text-blue-400 shrink-0" />
-                  <div>
-                    <span className="font-bold text-white block">Bank Approved</span>
-                    <span className="text-[10px] text-slate-400">SBI, HDFC 80% Loans</span>
-                  </div>
-                </div>
+                <a
+                  href="#projects"
+                  className="btn-secondary"
+                >
+                  <span>View Properties</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
 
-              {/* Fast Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-4">
-                <a
-                  href="#book-slot"
-                  className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-rodeo-500 via-rodeo-400 to-rodeo-500 text-gunmetal-950 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-sm shadow-xl shadow-emerald-950/80 transition-all transform hover:scale-[1.02] active:scale-95"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  <span>Book Free Site Visit Slot</span>
-                </a>
-
-                <a
-                  href={`tel:${BROKER_INFO.phone}`}
-                  className="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold text-sm border border-slate-700 transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-rodeo-400" />
-                  <span>Call {BROKER_INFO.phone}</span>
-                </a>
+              {/* Verified Trust Strip */}
+              <div className="pt-4 border-t border-[#eae3e0] grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
+                <div>
+                  <span className="font-serif font-bold text-lg text-[#142334] block">15+ Years</span>
+                  <span className="text-[#715343]">Local Market Experience</span>
+                </div>
+                <div>
+                  <span className="font-serif font-bold text-lg text-[#142334] block">CRDA / RERA</span>
+                  <span className="text-[#715343]">Verified Sanctions</span>
+                </div>
+                <div className="col-span-2 sm:col-span-1">
+                  <span className="font-serif font-bold text-lg text-[#142334] block">SBI & HDFC</span>
+                  <span className="text-[#715343]">Bank Pre-Approved</span>
+                </div>
               </div>
 
             </div>
 
-            {/* Right Col: Embedded Lead Booking Form */}
-            <div className="lg:col-span-5" id="book-slot">
-              <BookSlotForm
-                title="Book a Free Site Visit"
-                subtitle="Select your preferred project to inspect verified paperwork & plot location."
-              />
+            {/* Right Col: Authentic Property Photography */}
+            <div className="lg:col-span-6">
+              <div className="relative rounded-2xl overflow-hidden border border-[#eae3e0] shadow-lg bg-[#ffffff]">
+                <img
+                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=85"
+                  alt="Amaravati Master Planned Residential Township"
+                  className="w-full aspect-[4/3] object-cover"
+                />
+                
+                {/* Minimalist Info Card Overlay */}
+                <div className="absolute bottom-4 left-4 right-4 bg-[#ffffff]/95 backdrop-blur-md p-4 rounded-xl border border-[#eae3e0] flex items-center justify-between shadow-sm">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#715343] block">
+                      Active Listing
+                    </span>
+                    <h3 className="font-serif font-bold text-sm sm:text-base text-[#142334]">
+                      Amaravati Royal Palms (LP No. 30/2025)
+                    </h3>
+                    <p className="text-xs text-[#5c4438]">
+                      Mangalagiri-Neerukonda Growth Corridor
+                    </p>
+                  </div>
+                  <Link
+                    href="/property/amaravati-royal-palms"
+                    className="btn-primary text-xs py-2 px-3 shrink-0"
+                  >
+                    Details
+                  </Link>
+                </div>
+              </div>
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: PROOF STRIP STATS */}
-      <ProofStrip />
-
-      {/* SECTION 3: FEATURED VERIFIED PROJECTS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" id="projects">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      {/* SECTION 2: FEATURED PROPERTIES */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6" id="projects">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 border-b border-[#eae3e0] pb-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-rodeo-400 uppercase tracking-wider">
-              <Building2 className="w-4 h-4" />
-              <span>Active Verified Projects ({PROJECTS.length})</span>
-            </div>
-            <h2 className="font-display font-extrabold text-2xl sm:text-4xl text-white mt-1">
-              Active CRDA & RERA Sanctioned Townships
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#715343] block">
+              Current Portfolio ({PROJECTS.length} Active Developments)
+            </span>
+            <h2 className="font-serif font-bold text-2xl sm:text-3xl text-[#142334] mt-1">
+              Verified Residential Townships
             </h2>
-            <p className="text-slate-400 text-sm mt-2 max-w-xl">
-              Every listing includes official LP Numbers, RERA Registration IDs, and verified bank approval documentation.
-            </p>
           </div>
 
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 text-xs font-bold text-rodeo-400 hover:text-rodeo-300 border-b border-emerald-400/40 pb-1 w-fit"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#142334] hover:text-[#a67d64] transition-colors"
           >
-            <span>Need Custom Layout Requirement? Contact Broker</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Inquire for custom layout requirements</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#a67d64]" />
           </Link>
         </div>
 
@@ -137,126 +146,122 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 4: TRUST ENGINE - "PAPERWORK BEFORE PAYMENT" */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-slate-800 relative overflow-hidden">
+      {/* SECTION 3: TRUST & VERIFICATION PROCESS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4" id="verification">
+        <div className="editorial-panel p-8 sm:p-12 bg-[#ffffff] border border-[#eae3e0]">
           
-          <div className="max-w-3xl space-y-4 mb-10">
-            <span className="bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/30 uppercase tracking-wider inline-flex items-center gap-1.5">
-              <Award className="w-3.5 h-3.5" />
-              <span>Our 4-Step Legal Verification Workflow</span>
+          <div className="max-w-2xl space-y-3 mb-10">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#715343] block">
+              Due Diligence Standard
             </span>
-            <h2 className="font-display font-extrabold text-2xl sm:text-4xl text-white">
-              Why Pavan Properties? <br />
-              <span className="text-rodeo-400">Paperwork Before Payment</span>
+            <h2 className="font-serif font-bold text-2xl sm:text-3xl text-[#142334]">
+              Before You Visit, We Verify.
             </h2>
-            <p className="text-slate-300 text-sm leading-relaxed">
-              In real estate, promises mean nothing without government stamp approvals. Here is how we verify every single property before recommending it to buyers:
+            <p className="text-sm text-[#344f6d] leading-relaxed">
+              Every property recommended by Pavan Properties undergoes a structured four-stage regulatory and title audit:
             </p>
           </div>
 
+          {/* 4-Step Editorial Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3 relative group hover:border-rodeo-400/40 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-rodeo-500/20 border border-rodeo-400/30 text-rodeo-400 flex items-center justify-center font-bold text-sm">
-                01
-              </div>
-              <h3 className="font-display font-bold text-base text-white">CRDA Layout Order</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                We verify official CRDA Sanction Orders (LP Numbers) confirming road width allocations and government open space handovers.
+            <div className="p-5 rounded-xl bg-[#f9f6ee] border border-[#eae3e0] space-y-2">
+              <span className="font-mono text-xs font-bold text-[#a67d64] block">01</span>
+              <h3 className="font-serif font-bold text-base text-[#142334]">CRDA Layout Order</h3>
+              <p className="text-xs text-[#5c4438] leading-relaxed">
+                Verification of master plan compliance, public road handover, and final sanction LP numbers.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3 relative group hover:border-rodeo-400/40 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-400 flex items-center justify-center font-bold text-sm">
-                02
-              </div>
-              <h3 className="font-display font-bold text-base text-white">AP RERA Certificate</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Full AP RERA portal registration check ensuring buyer escrow safety and strict statutory completion guarantees.
+            <div className="p-5 rounded-xl bg-[#f9f6ee] border border-[#eae3e0] space-y-2">
+              <span className="font-mono text-xs font-bold text-[#a67d64] block">02</span>
+              <h3 className="font-serif font-bold text-base text-[#142334]">AP RERA Registration</h3>
+              <p className="text-xs text-[#5c4438] leading-relaxed">
+                Official RERA portal registration check ensuring statutory compliance and project completion timelines.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3 relative group hover:border-rodeo-400/40 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-500/30 text-blue-400 flex items-center justify-center font-bold text-sm">
-                03
-              </div>
-              <h3 className="font-display font-bold text-base text-white">30-Yr EC & Title Search</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Complete Encumbrance Certificate (EC) audit ensuring zero legal mortgages, disputes, or agricultural title conflicts.
+            <div className="p-5 rounded-xl bg-[#f9f6ee] border border-[#eae3e0] space-y-2">
+              <span className="font-mono text-xs font-bold text-[#a67d64] block">03</span>
+              <h3 className="font-serif font-bold text-base text-[#142334]">Title & 30-Year EC</h3>
+              <p className="text-xs text-[#5c4438] leading-relaxed">
+                Comprehensive Encumbrance Certificate (EC) audit ensuring zero legal mortgages or agricultural disputes.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3 relative group hover:border-rodeo-400/40 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/30 text-purple-400 flex items-center justify-center font-bold text-sm">
-                04
-              </div>
-              <h3 className="font-display font-bold text-base text-white">Pre-Approved Bank Loans</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Nationalized bank tie-ups (SBI, HDFC, ICICI) ready for up to 80% spot housing loan sanctions.
+            <div className="p-5 rounded-xl bg-[#f9f6ee] border border-[#eae3e0] space-y-2">
+              <span className="font-mono text-xs font-bold text-[#a67d64] block">04</span>
+              <h3 className="font-serif font-bold text-base text-[#142334]">Bank Financing</h3>
+              <p className="text-xs text-[#5c4438] leading-relaxed">
+                Documentation pre-cleared for spot loan processing with nationalized lenders including SBI and HDFC.
               </p>
             </div>
 
+          </div>
+
+          {/* Legal Disclaimer Note */}
+          <div className="mt-8 pt-6 border-t border-[#eae3e0] text-xs text-[#715343] leading-relaxed">
+            <p>
+              <strong>Buyer Notice:</strong> Official government sanction orders, layout drawings, and regulatory certificates are made available for client inspection. Prospective buyers are encouraged to independently verify all statutory records before executing registration deeds.
+            </p>
           </div>
 
         </div>
       </section>
 
-      {/* SECTION 5: BROKER PROFILE HIGHLIGHT */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="glass-card rounded-3xl p-8 sm:p-12 border border-slate-800 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      {/* SECTION 4: ABOUT THE BROKER */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="editorial-panel p-8 sm:p-12 bg-[#ffffff] border border-[#eae3e0] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          <div className="lg:col-span-4 relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+          <div className="lg:col-span-4 aspect-[4/5] rounded-xl overflow-hidden bg-[#f4f0ea] border border-[#eae3e0]">
             <img
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
-              alt="Pavan Kumar Broker"
+              alt="Pavan Kumar - Managing Director"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent flex items-end p-6">
-              <div>
-                <span className="text-xs text-rodeo-400 font-bold tracking-wider uppercase block">Managing Director</span>
-                <h3 className="font-display font-bold text-xl text-white">Pavan Kumar</h3>
-                <p className="text-xs text-slate-300 mt-0.5">15+ Years Licensed Broker</p>
-              </div>
-            </div>
           </div>
 
-          <div className="lg:col-span-8 space-y-5">
-            <div className="flex items-center gap-2 text-xs font-semibold text-rodeo-400">
-              <CheckCircle2 className="w-4 h-4 text-rodeo-400" />
-              <span>Personalized Advisory Guarantee</span>
-            </div>
+          <div className="lg:col-span-8 space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#715343] block">
+              Broker Profile
+            </span>
 
-            <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-white">
-              &quot;My rule for 15 years: If the paperwork isn&apos;t clear on day one, I will never let my client touch the plot.&quot;
+            <h2 className="font-serif font-bold text-2xl sm:text-3xl text-[#142334]">
+              Pavan Kumar
             </h2>
 
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-xs text-[#a67d64] font-medium uppercase tracking-wide">
+              Managing Director & Principal Advisor • 15 Years in AP Real Estate
+            </p>
+
+            <p className="text-sm text-[#344f6d] leading-relaxed">
               {BROKER_INFO.bio}
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
-              <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                <span className="text-2xl font-display font-extrabold text-white block">2,400+</span>
-                <span className="text-xs text-slate-400">Happy Property Buyers</span>
-              </div>
-              <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                <span className="text-2xl font-display font-extrabold text-rodeo-400 block">₹180Cr+</span>
-                <span className="text-xs text-slate-400">Loans Sanctioned</span>
-              </div>
-              <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 col-span-2 sm:col-span-1">
-                <span className="text-2xl font-display font-extrabold text-amber-400 block">100%</span>
-                <span className="text-xs text-slate-400">Legal Title Clearance</span>
-              </div>
+            <div className="pt-2 text-xs text-[#5c4438] space-y-1.5 border-t border-[#eae3e0]">
+              <p>
+                <strong>Office Address:</strong> {BROKER_INFO.officeAddress}
+              </p>
+              <p>
+                <strong>Direct Telephone:</strong> {BROKER_INFO.phone} • <strong>Email:</strong> {BROKER_INFO.email}
+              </p>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-3 flex flex-wrap items-center gap-3">
+              <a
+                href={`tel:${BROKER_INFO.phone}`}
+                className="btn-primary text-xs py-2.5 px-4"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                <span>Call Directly</span>
+              </a>
+
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 px-5 py-2.5 rounded-xl border border-slate-700 transition-colors"
+                className="btn-secondary text-xs py-2.5 px-4"
               >
-                <span>Read Full Broker Story</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Read Full Background</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
@@ -265,38 +270,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 6: BOTTOM CTA BAND */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-gradient-to-r from-gunmetal-950 via-gunmetal-900 to-gunmetal-950 rounded-3xl p-8 sm:p-12 border border-rodeo-400/30 text-center space-y-6 shadow-2xl shadow-emerald-950/50">
+      {/* SECTION 5: SITE VISIT BOOKING (CONVERSION POINT) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4" id="book-visit">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          <span className="bg-rodeo-500/20 text-rodeo-300 text-xs font-bold px-3 py-1 rounded-full border border-rodeo-400/30 uppercase tracking-wider inline-block">
-            Book Site Visit In 3 Taps
-          </span>
+          <div className="lg:col-span-5 space-y-6">
+            <div className="space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#715343] block">
+                Schedule a Visit
+              </span>
+              <h2 className="font-serif font-bold text-2xl sm:text-3xl text-[#142334]">
+                Inspect the Location in Person
+              </h2>
+              <p className="text-sm text-[#344f6d] leading-relaxed">
+                We organize dedicated site visits across Amaravati and Vijayawada. Review original layout sanction maps and assess road connectivity on ground.
+              </p>
+            </div>
 
-          <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-white max-w-2xl mx-auto">
-            Ready to Inspect Verified CRDA Plots?
-          </h2>
+            <div className="p-5 rounded-xl bg-[#ffffff] border border-[#eae3e0] space-y-3 text-xs">
+              <h4 className="font-serif font-bold text-sm text-[#142334]">Site Visit Protocol</h4>
+              <ul className="space-y-2 text-[#5c4438]">
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#a67d64] shrink-0 mt-0.5" />
+                  <span>Physical inspection of CC roads, drainage, and open space reservations.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#a67d64] shrink-0 mt-0.5" />
+                  <span>Review of survey numbers, link documents, and RERA registration certs.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#a67d64] shrink-0 mt-0.5" />
+                  <span>Direct consultation with Pavan Kumar regarding pricing and bank tie-ups.</span>
+                </li>
+              </ul>
+            </div>
 
-          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-            Free AC car pickup provided for Amaravati & Vijayawada site visits. Original paperwork copies available on site.
-          </p>
+            <div className="p-4 rounded-xl bg-[#f4f0ea] border border-[#eae3e0] text-xs text-[#5c4438]">
+              <strong>Office Walk-ins Welcome:</strong> Monday through Sunday, 9:00 AM to 7:00 PM at M.G. Road, Vijayawada.
+            </div>
+          </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <Link
-              href="/contact"
-              className="flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-rodeo-500 via-rodeo-400 to-rodeo-500 text-gunmetal-950 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-sm shadow-xl shadow-emerald-950 transition-all transform hover:scale-105"
-            >
-              <Sparkles className="w-5 h-5" />
-              <span>Book Your Slot Now</span>
-            </Link>
-
-            <a
-              href={`tel:${BROKER_INFO.phone}`}
-              className="flex items-center gap-2 px-6 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm border border-slate-700 transition-colors"
-            >
-              <Phone className="w-5 h-5 text-rodeo-400" />
-              <span>Call Broker ({BROKER_INFO.phone})</span>
-            </a>
+          <div className="lg:col-span-7">
+            <BookSlotForm />
           </div>
 
         </div>

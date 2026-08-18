@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -24,102 +24,167 @@
 
 body {
   font-family: var(--font-inter);
-  background-color: #142334;
-  color: #f9f6ee;
+  background-color: #f9f6ee;
+  color: #142334;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, .font-display {
+h1, h2, h3, h4 {
+  font-family: var(--font-playfair);
+  color: #142334;
+  letter-spacing: -0.015em;
+}
+
+.font-display {
   font-family: var(--font-outfit);
 }
 
-.font-serif-luxury {
+.font-serif-editorial {
   font-family: var(--font-playfair);
 }
 
-.font-cormorant {
-  font-family: var(--font-cormorant);
+.font-sans-ui {
+  font-family: var(--font-inter);
 }
 
-/* Glassmorphism & Luxury Panels using Brand Colors */
-.glass-panel {
-  background: rgba(20, 35, 52, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(234, 227, 224, 0.12);
-}
-
-.glass-panel-luxury {
-  background: radial-gradient(circle at 50% 0%, rgba(35, 55, 78, 0.92) 0%, rgba(12, 22, 34, 0.98) 100%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(201, 173, 152, 0.35);
-}
-
-.glass-card-luxury {
-  background: linear-gradient(145deg, rgba(35, 55, 78, 0.55) 0%, rgba(12, 22, 34, 0.85) 100%);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(234, 227, 224, 0.1);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card-luxury:hover {
-  border-color: rgba(201, 173, 152, 0.55);
-  box-shadow: 0 20px 40px -15px rgba(201, 173, 152, 0.2);
-  transform: translateY(-4px);
-}
-
-.glass-card {
-  background: linear-gradient(135deg, rgba(35, 55, 78, 0.45) 0%, rgba(12, 22, 34, 0.85) 100%);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(234, 227, 224, 0.1);
+/* Authentic Editorial Cards & Panels */
+.editorial-card {
+  background-color: #ffffff;
+  border: 1px solid #eae3e0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px -2px rgba(20, 35, 52, 0.04), 0 1px 4px -1px rgba(20, 35, 52, 0.02);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card:hover {
-  border-color: rgba(201, 173, 152, 0.5);
-  box-shadow: 0 10px 30px -10px rgba(201, 173, 152, 0.18);
-  transform: translateY(-3px);
+.editorial-card:hover {
+  border-color: #c9ad98;
+  box-shadow: 0 12px 24px -6px rgba(20, 35, 52, 0.08), 0 4px 12px -2px rgba(20, 35, 52, 0.03);
+  transform: translateY(-2px);
 }
 
-.glass-panel-gold {
-  background: rgba(25, 42, 62, 0.9);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(201, 173, 152, 0.35);
+.editorial-panel {
+  background-color: #ffffff;
+  border: 1px solid #eae3e0;
+  border-radius: 16px;
 }
 
-/* Metallic & Gold Text using Rodeo Dust (#c9ad98) + Spring Wood (#f9f6ee) */
-.metallic-gold-text {
-  background: linear-gradient(135deg, #ffffff 0%, #f9f6ee 25%, #dac7b8 50%, #c9ad98 80%, #a67d64 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.editorial-panel-dark {
+  background-color: #142334;
+  color: #f9f6ee;
+  border: 1px solid #23374e;
+  border-radius: 16px;
 }
 
-.metallic-silver-text {
-  background: linear-gradient(135deg, #ffffff 0%, #eae3e0 50%, #c5b5ad 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.editorial-panel-warm {
+  background-color: #f4f0ea;
+  border: 1px solid #eae3e0;
+  border-radius: 16px;
 }
 
-.metallic-gold-border {
-  border: 1px solid rgba(201, 173, 152, 0.4);
+/* Subtle Labels & Badges */
+.badge-subtle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border-radius: 6px;
+  background-color: #f4f0ea;
+  color: #142334;
+  border: 1px solid #eae3e0;
 }
 
-.metallic-gold-glow {
-  box-shadow: 0 0 30px rgba(201, 173, 152, 0.2);
-}
-
-/* Badges with Rodeo Dust & Platinum */
-.badge-verified {
-  background: linear-gradient(90deg, rgba(201, 173, 152, 0.15) 0%, rgba(201, 173, 152, 0.28) 100%);
-  border: 1px solid rgba(201, 173, 152, 0.45);
-  color: #dac7b8;
-}
-
-.badge-gold {
-  background: linear-gradient(90deg, rgba(201, 173, 152, 0.18) 0%, rgba(201, 173, 152, 0.32) 100%);
+.badge-rodeo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: rgba(201, 173, 152, 0.18);
+  color: #5c4438;
   border: 1px solid rgba(201, 173, 152, 0.5);
-  color: #c9ad98;
+}
+
+.badge-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: #142334;
+  color: #f9f6ee;
+  border: 1px solid #23374e;
+}
+
+/* Button Styling */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #142334;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: 1px solid #142334;
+}
+
+.btn-primary:hover {
+  background-color: #23374e;
+  border-color: #23374e;
+  transform: translateY(-1px);
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #c9ad98;
+  color: #142334;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: 1px solid #c9ad98;
+}
+
+.btn-accent:hover {
+  background-color: #b8947c;
+  border-color: #b8947c;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: #142334;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #eae3e0;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #f4f0ea;
+  border-color: #c9ad98;
 }
 
 /* Custom Scrollbar */
@@ -127,10 +192,10 @@ h1, h2, h3, h4, .font-display {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0c1622;
+  background: #f9f6ee;
 }
 ::-webkit-scrollbar-thumb {
-  background: #23374e;
+  background: #dac7b8;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {

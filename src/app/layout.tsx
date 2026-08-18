@@ -5,16 +5,29 @@ import { Footer } from '@/components/layout/Footer';
 import { WhatsAppFloat } from '@/components/common/WhatsAppFloat';
 
 export const metadata: Metadata = {
-  title: 'Pavan Properties | CRDA & RERA Verified Real Estate Brokerage',
-  description: 'Lead generation portal for verified CRDA sanctioned layouts, AP RERA registered townships, and bank loan approved plots in Amaravati, Vijayawada & Guntur.',
-  keywords: ['Pavan Properties', 'CRDA approved plots', 'AP RERA township', 'Amaravati real estate', 'Vijayawada open plots', 'Verified real estate broker'],
+  title: 'Pavan Properties | CRDA & AP RERA Verified Real Estate Advisory in Amaravati & Vijayawada',
+  description: 'Verified residential plots and townships in Amaravati & Vijayawada. Official CRDA sanction orders (LP numbers), AP RERA registration certificates, and nationalized bank pre-approvals.',
+  keywords: [
+    'Pavan Properties',
+    'Amaravati plots',
+    'Vijayawada real estate',
+    'CRDA approved plots',
+    'AP RERA registered township',
+    'Mangalagiri open plots',
+    'Real estate broker Vijayawada'
+  ],
   authors: [{ name: 'Pavan Kumar - Pavan Properties' }],
+  metadataBase: new URL('https://pavanproperties.in'),
   openGraph: {
-    title: 'Pavan Properties | Verified Paperwork Real Estate Listings',
-    description: '100% Verified CRDA & RERA layouts. Bank loan facilities pre-approved. Book a free site visit slot in under 3 taps.',
+    title: 'Pavan Properties — Verified Real Estate in Amaravati & Vijayawada',
+    description: '100% verified CRDA layout sanctions & AP RERA registrations. Schedule a direct site visit with Pavan Kumar.',
     type: 'website',
     locale: 'en_IN',
     siteName: 'Pavan Properties'
+  },
+  robots: {
+    index: true,
+    follow: true
   }
 };
 
@@ -23,9 +36,53 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateAgent',
+    name: 'Pavan Properties',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a',
+    '@id': 'https://pavanproperties.in',
+    url: 'https://pavanproperties.in',
+    telephone: '+919876543210',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Door No. 40-1-12, 3rd Floor, Opposite PVP Square Mall, M.G. Road',
+      addressLocality: 'Vijayawada',
+      addressRegion: 'Andhra Pradesh',
+      postalCode: '520010',
+      addressCountry: 'IN'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 16.5062,
+      longitude: 80.6480
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+      ],
+      opens: '09:00',
+      closes: '19:00'
+    },
+    areaServed: ['Vijayawada', 'Amaravati', 'Guntur', 'Mangalagiri']
+  };
+
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen flex flex-col bg-slate-950 text-slate-100 antialiased selection:bg-emerald-500 selection:text-white">
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col bg-[#f9f6ee] text-[#142334] font-sans antialiased selection:bg-[#c9ad98] selection:text-[#142334]">
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
