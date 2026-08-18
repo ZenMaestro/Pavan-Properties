@@ -213,11 +213,11 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="editorial-panel p-8 sm:p-12 bg-[#ffffff] border border-[#eae3e0] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          <div className="lg:col-span-4 aspect-[4/5] rounded-xl overflow-hidden bg-[#f4f0ea] border border-[#eae3e0]">
+          <div className="lg:col-span-4 aspect-[4/5] rounded-xl overflow-hidden bg-[#f4f0ea] border border-[#eae3e0] shadow-sm">
             <img
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
-              alt="Pavan Kumar - Managing Director"
-              className="w-full h-full object-cover"
+              src="/pavan-kumar.png"
+              alt="Pavan Kumar - Managing Director, Pavan Properties"
+              className="w-full h-full object-cover object-top"
             />
           </div>
 

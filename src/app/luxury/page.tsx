@@ -183,9 +183,9 @@ export default function LuxuryLandingPage() {
             
             <div className="lg:col-span-4 relative aspect-[4/5] rounded-2xl overflow-hidden bg-navy-950 border border-slate-800 shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
-                alt="Pavan Kumar - Managing Broker"
-                className="w-full h-full object-cover"
+                src="/pavan-kumar.png"
+                alt="Pavan Kumar - Managing Broker, Pavan Properties"
+                className="w-full h-full object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent flex items-end p-6">
                 <div>

@@ -40,7 +40,7 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'RealEstateAgent',
     name: 'Pavan Properties',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a',
+    image: 'https://pavanproperties.in/pavan-kumar.png',
     '@id': 'https://pavanproperties.in',
     url: 'https://pavanproperties.in',
     telephone: '+919876543210',

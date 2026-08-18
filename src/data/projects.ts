@@ -157,6 +157,7 @@ export const BROKER_INFO = {
   name: 'Pavan Kumar',
   title: 'Managing Director & Lead Property Advisor',
   firm: 'Pavan Properties',
+  photoUrl: '/pavan-kumar.png',
   experienceYears: 15,
   citiesServed: 6,
   verifiedListingsPercent: 100,
