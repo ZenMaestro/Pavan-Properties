@@ -14,7 +14,7 @@ export default function ProjectDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
 
-  const initialProject = PROJECTS.find(p => p.slug === slug);
+  const initialProject = PROJECTS.find(p => p.slug === slug || p.id === slug);
   const [project, setProject] = useState<Project | null>(initialProject || null);
   const [loading, setLoading] = useState(!initialProject);
 
@@ -26,12 +26,13 @@ export default function ProjectDetailPage() {
       if (!slug) return;
       try {
         const res = await fetch(`/api/properties/${slug}`);
+        if (!res.ok) return;
         const data = await res.json();
         if (data.success && data.data) {
           setProject(data.data);
         }
       } catch (err) {
-        console.warn('Failed to fetch project from API, using fallback if available.', err);
+        // Fallback already pre-loaded
       } finally {
         setLoading(false);
       }
