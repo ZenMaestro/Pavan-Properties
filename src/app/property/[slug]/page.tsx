@@ -61,62 +61,122 @@ export default function ProjectDetailPage() {
     );
   }
 
+  // Safe normalized arrays
+  const images = Array.isArray(project.images) && project.images.length > 0
+    ? project.images
+    : ['/projects/anvi-homes-1.jpg'];
+  const highlights = Array.isArray(project.highlights) ? project.highlights : [];
+  const approvals = Array.isArray(project.approvals) ? project.approvals : [];
+  const verifiedDocs = Array.isArray(project.verifiedDocs) ? project.verifiedDocs : [];
+  const specifications = Array.isArray(project.specifications) ? project.specifications : [];
+  const bankTieUps = Array.isArray(project.bankTieUps) ? project.bankTieUps : [];
+
   return (
-    <div className="space-y-12 pb-16">
+    <div className="space-y-12 pb-20">
       
-      {/* Breadcrumb Navigation */}
-      <div className="bg-[#ffffff] border-b border-[#eae3e0] py-3.5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs">
+      {/* Header Banner */}
+      <section className="bg-[#ffffff] border-b border-[#eae3e0] py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+          
           <Link
-            href="/"
-            className="flex items-center gap-2 font-medium text-[#142334] hover:text-[#a67d64] transition-colors"
+            href="/#projects"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#715343] hover:text-[#142334] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>All Properties</span>
+            <span>Back to Verified Townships</span>
           </Link>
 
-          <div className="flex items-center gap-2 text-[#715343]">
-            <span>{project.city}</span>
-            <span>•</span>
-            <span className="font-mono text-[#142334] font-semibold">{project.lpNumber}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        
-        {/* Header Title & Pricing */}
-        <div className="editorial-panel p-6 sm:p-8 bg-[#ffffff] space-y-6">
-          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
-            
-            <div className="space-y-3">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="bg-[#f4f0ea] text-[#142334] font-mono text-xs font-semibold px-2.5 py-1 rounded border border-[#eae3e0]">
-                  {project.lpNumber}
+                <span className="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2.5 py-0.5 rounded bg-[#f4f0ea] border border-[#eae3e0] text-[#142334]">
+                  <Landmark className="w-3 h-3 text-[#a67d64]" />
+                  {project.lpNumber || 'LP APPROVED'}
                 </span>
-                <span className="bg-[#f4f0ea] text-[#142334] text-xs font-semibold px-2.5 py-1 rounded border border-[#eae3e0]">
-                  {project.reraId}
+                <span className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-0.5 rounded bg-[#f4f0ea] border border-[#eae3e0] text-[#142334]">
+                  <Shield className="w-3 h-3 text-[#a67d64]" />
+                  {project.reraId || 'AP RERA APPROVED'}
                 </span>
               </div>
 
-              <h1 className="font-serif font-bold text-3xl sm:text-4xl text-[#142334]">
+              <h1 className="font-serif font-bold text-2xl sm:text-4xl text-[#142334]">
                 {project.name}
               </h1>
 
-              <div className="flex items-center gap-1.5 text-xs text-[#5c4438]">
-                <MapPin className="w-3.5 h-3.5 text-[#a67d64] shrink-0" />
+              <div className="flex items-center gap-2 text-xs text-[#5c4438]">
+                <MapPin className="w-3.5 h-3.5 text-[#a67d64]" />
                 <span>{project.location}</span>
               </div>
             </div>
 
-            {/* Price Box */}
-            <div className="p-5 rounded-xl bg-[#f9f6ee] border border-[#eae3e0] lg:text-right shrink-0">
-              <span className="text-xs text-[#715343] uppercase font-semibold block">Starting Price</span>
-              <span className="font-sans font-bold text-2xl sm:text-3xl text-[#142334]">{project.priceFrom}</span>
-              {project.pricePerSqYd && (
-                <span className="text-xs text-[#5c4438] block mt-0.5">{project.pricePerSqYd}</span>
-              )}
+            {/* Price & Primary CTA */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-[#f9f6ee] p-4 rounded-xl border border-[#eae3e0]">
+              <div>
+                <span className="text-[11px] text-[#715343] uppercase tracking-wider block">Investment Bracket</span>
+                <span className="font-sans font-bold text-xl text-[#142334]">{project.priceFrom}</span>
+                {project.pricePerSqYd && (
+                  <span className="text-xs text-[#715343] block">({project.pricePerSqYd})</span>
+                )}
+              </div>
+
+              <a
+                href="#book-slot"
+                className="btn-primary text-xs py-2.5 px-4 shrink-0"
+              >
+                <Calendar className="w-3.5 h-3.5" />
+                <span>Book Priority Site Visit</span>
+              </a>
             </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Main Content Layout */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        {/* Editorial Narrative & Quick Facts */}
+        <div className="editorial-panel p-6 sm:p-10 bg-[#ffffff] space-y-6">
+          <div className="max-w-3xl space-y-3">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#715343] block">
+              Development Overview
+            </span>
+            <p className="font-serif text-xl sm:text-2xl text-[#142334] leading-snug">
+              {project.tagline || project.name}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-[#eae3e0]">
+            
+            {/* Highlights */}
+            {highlights.length > 0 && (
+              <div className="space-y-3">
+                <h3 className="font-serif font-bold text-base text-[#142334]">Location Advantages & Infra</h3>
+                <ul className="space-y-2 text-xs text-[#344f6d]">
+                  {highlights.map((hl, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-[#a67d64] shrink-0 mt-0.5" />
+                      <span className="leading-relaxed">{hl}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Approvals */}
+            {approvals.length > 0 && (
+              <div className="space-y-3">
+                <h3 className="font-serif font-bold text-base text-[#142334]">Statutory & Legal Clearances</h3>
+                <ul className="space-y-2 text-xs text-[#344f6d]">
+                  {approvals.map((app, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <FileCheck className="w-4 h-4 text-[#a67d64] shrink-0 mt-0.5" />
+                      <span className="leading-relaxed">{app}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
           </div>
 
@@ -124,11 +184,11 @@ export default function ProjectDetailPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-[#eae3e0] text-xs text-[#142334]">
             <div>
               <span className="text-[11px] text-[#715343] block">Layout Size</span>
-              <span className="font-semibold">{project.totalArea}</span>
+              <span className="font-semibold">{project.totalArea || 'Master Planned'}</span>
             </div>
             <div>
               <span className="text-[11px] text-[#715343] block">Plot Configurations</span>
-              <span className="font-semibold">{project.plotSizes}</span>
+              <span className="font-semibold">{project.plotSizes || 'Standard Plots'}</span>
             </div>
             <div>
               <span className="text-[11px] text-[#715343] block">Title Status</span>
@@ -154,7 +214,7 @@ export default function ProjectDetailPage() {
               className="sm:col-span-2 sm:row-span-2 relative aspect-[16/10] sm:aspect-auto rounded-xl overflow-hidden cursor-pointer group border border-[#eae3e0]"
             >
               <img
-                src={project.images[0]}
+                src={images[0]}
                 alt={`${project.name} primary photograph`}
                 className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
               />
@@ -165,7 +225,7 @@ export default function ProjectDetailPage() {
               </div>
             </div>
 
-            {project.images.slice(1, 4).map((img, idx) => (
+            {images.slice(1, 4).map((img, idx) => (
               <div
                 key={idx}
                 onClick={() => setLightboxIndex(idx + 1)}
@@ -182,41 +242,43 @@ export default function ProjectDetailPage() {
         </div>
 
         {/* Verified Sanction Documents */}
-        <div className="editorial-panel p-6 sm:p-8 bg-[#ffffff] space-y-6">
-          <div className="space-y-1">
-            <h2 className="font-serif font-bold text-xl text-[#142334]">
-              Government Sanctions & Regulatory Certificates
-            </h2>
-            <p className="text-xs text-[#5c4438]">
-              Official copies available for prospective buyer audit and title verification.
-            </p>
-          </div>
+        {verifiedDocs.length > 0 && (
+          <div className="editorial-panel p-6 sm:p-8 bg-[#ffffff] space-y-6">
+            <div className="space-y-1">
+              <h2 className="font-serif font-bold text-xl text-[#142334]">
+                Government Sanctions & Regulatory Certificates
+              </h2>
+              <p className="text-xs text-[#5c4438]">
+                Official copies available for prospective buyer audit and title verification.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {project.verifiedDocs.map(doc => (
-              <div
-                key={doc.id}
-                onClick={() => setActiveDoc(doc)}
-                className="p-5 rounded-xl bg-[#f9f6ee] border border-[#eae3e0] hover:border-[#c9ad98] cursor-pointer space-y-2.5 transition-all group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono font-bold text-[#142334] bg-white px-2 py-0.5 rounded border border-[#eae3e0]">
-                    {doc.type}
-                  </span>
-                  <span className="text-[11px] text-[#a67d64] font-medium underline">Inspect Copy</span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {verifiedDocs.map(doc => (
+                <div
+                  key={doc.id}
+                  onClick={() => setActiveDoc(doc)}
+                  className="p-5 rounded-xl bg-[#f9f6ee] border border-[#eae3e0] hover:border-[#c9ad98] cursor-pointer space-y-2.5 transition-all group"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold text-[#142334] bg-white px-2 py-0.5 rounded border border-[#eae3e0]">
+                      {doc.type}
+                    </span>
+                    <span className="text-[11px] text-[#a67d64] font-medium underline">Inspect Copy</span>
+                  </div>
+
+                  <h4 className="font-serif font-bold text-sm text-[#142334] group-hover:text-[#a67d64] transition-colors">
+                    {doc.title}
+                  </h4>
+
+                  <p className="text-[11px] text-[#5c4438]">
+                    Doc No: <strong className="text-[#142334]">{doc.documentNumber}</strong>
+                  </p>
                 </div>
-
-                <h4 className="font-serif font-bold text-sm text-[#142334] group-hover:text-[#a67d64] transition-colors">
-                  {doc.title}
-                </h4>
-
-                <p className="text-[11px] text-[#5c4438]">
-                  Doc No: <strong className="text-[#142334]">{doc.documentNumber}</strong>
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Specifications & Lead Form Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -224,49 +286,55 @@ export default function ProjectDetailPage() {
           <div className="lg:col-span-7 space-y-6">
             
             {/* Overview */}
-            <div className="editorial-panel p-6 sm:p-8 bg-[#ffffff] space-y-3">
-              <h2 className="font-serif font-bold text-xl text-[#142334]">Project Overview</h2>
-              <p className="text-[#344f6d] text-sm leading-relaxed">
-                {project.overview}
-              </p>
-            </div>
+            {project.overview && (
+              <div className="editorial-panel p-6 sm:p-8 bg-[#ffffff] space-y-3">
+                <h2 className="font-serif font-bold text-xl text-[#142334]">Project Overview</h2>
+                <p className="text-[#344f6d] text-sm leading-relaxed">
+                  {project.overview}
+                </p>
+              </div>
+            )}
 
             {/* Specifications */}
-            <div className="editorial-panel p-6 sm:p-8 bg-[#ffffff] space-y-4">
-              <h2 className="font-serif font-bold text-xl text-[#142334]">Development Specifications</h2>
-              <div className="space-y-4">
-                {project.specifications.map((spec, i) => (
-                  <div key={i} className="space-y-1.5">
-                    <h4 className="text-xs font-semibold text-[#142334] uppercase tracking-wider">
-                      {spec.category}
-                    </h4>
-                    <ul className="space-y-1 text-xs text-[#5c4438]">
-                      {spec.details.map((detail, idx) => (
-                        <li key={idx} className="flex items-center gap-2">
-                          <Check className="w-3.5 h-3.5 text-[#a67d64] shrink-0" />
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+            {specifications.length > 0 && (
+              <div className="editorial-panel p-6 sm:p-8 bg-[#ffffff] space-y-4">
+                <h2 className="font-serif font-bold text-xl text-[#142334]">Development Specifications</h2>
+                <div className="space-y-4">
+                  {specifications.map((spec, i) => (
+                    <div key={i} className="space-y-1.5">
+                      <h4 className="text-xs font-semibold text-[#142334] uppercase tracking-wider">
+                        {spec.category}
+                      </h4>
+                      <ul className="space-y-1 text-xs text-[#5c4438]">
+                        {(spec.details || []).map((detail, idx) => (
+                          <li key={idx} className="flex items-center gap-2">
+                            <Check className="w-3.5 h-3.5 text-[#a67d64] shrink-0" />
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Bank Tie-ups */}
-            <div className="editorial-panel p-6 bg-[#f9f6ee] space-y-2 text-xs">
-              <h4 className="font-serif font-bold text-sm text-[#142334]">Pre-Approved Bank Facilities</h4>
-              <p className="text-[#5c4438]">
-                Eligible buyers may avail up to 80% housing loan sanction through:
-              </p>
-              <div className="flex flex-wrap gap-2 pt-1">
-                {project.bankTieUps.map((b, idx) => (
-                  <span key={idx} className="px-2.5 py-1 rounded bg-[#ffffff] border border-[#eae3e0] text-[#142334] font-medium">
-                    {b}
-                  </span>
-                ))}
+            {bankTieUps.length > 0 && (
+              <div className="editorial-panel p-6 bg-[#f9f6ee] space-y-2 text-xs">
+                <h4 className="font-serif font-bold text-sm text-[#142334]">Pre-Approved Bank Facilities</h4>
+                <p className="text-[#5c4438]">
+                  Eligible buyers may avail up to 80% housing loan sanction through:
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {bankTieUps.map((b, idx) => (
+                    <span key={idx} className="px-2.5 py-1 rounded bg-[#ffffff] border border-[#eae3e0] text-[#142334] font-medium">
+                      {b}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
           </div>
 
@@ -275,7 +343,7 @@ export default function ProjectDetailPage() {
             <BookSlotForm
               defaultProjectSlug={project.slug}
               title={`Schedule Visit for ${project.name}`}
-              subtitle={`Layout Reference: ${project.lpNumber}`}
+              subtitle={`Layout Reference: ${project.lpNumber || ''}`}
             />
           </div>
 
@@ -284,18 +352,20 @@ export default function ProjectDetailPage() {
       </div>
 
       <Lightbox
-        images={project.images}
+        images={images}
         currentIndex={lightboxIndex}
         onClose={() => setLightboxIndex(null)}
         onNavigate={(idx) => setLightboxIndex(idx)}
       />
 
-      <DocumentViewerModal
-        doc={activeDoc}
-        onClose={() => setActiveDoc(null)}
-        projectName={project.name}
-        lpNumber={project.lpNumber}
-      />
+      {verifiedDocs.length > 0 && (
+        <DocumentViewerModal
+          doc={activeDoc}
+          onClose={() => setActiveDoc(null)}
+          projectName={project.name || 'Property'}
+          lpNumber={project.lpNumber || ''}
+        />
+      )}
 
     </div>
   );
