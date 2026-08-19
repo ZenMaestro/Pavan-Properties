@@ -3,13 +3,12 @@ import { connectToDatabase } from '@/lib/mongodb';
 import { ProjectModel } from '@/models/Project';
 import { PROJECTS } from '@/data/projects';
 
-// GET /api/properties -> Returns all properties
+// GET /api/properties -> Returns all properties (Guaranteed HTTP 200)
 export async function GET(req: NextRequest) {
   try {
     const mongooseInstance = await connectToDatabase();
 
     if (!mongooseInstance) {
-      // Fallback to static bundled projects if MongoDB is not connected
       return NextResponse.json({
         success: true,
         source: 'static-fallback',
@@ -20,7 +19,6 @@ export async function GET(req: NextRequest) {
 
     const projectsFromDb = await ProjectModel.find({}).sort({ createdAt: -1 }).lean();
 
-    // If DB is connected but empty, return static projects or empty array
     if (!projectsFromDb || projectsFromDb.length === 0) {
       return NextResponse.json({
         success: true,
@@ -42,14 +40,12 @@ export async function GET(req: NextRequest) {
       data: formatted,
     });
   } catch (error: any) {
-    console.error('Error fetching properties:', error);
-    // Graceful fallback on error
+    console.error('Error fetching properties from MongoDB, using fallback:', error);
     return NextResponse.json({
       success: true,
       source: 'static-fallback-error',
       count: PROJECTS.length,
       data: PROJECTS,
-      error: error.message,
     });
   }
 }
@@ -63,7 +59,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           success: false,
-          error: 'MongoDB is not connected. Please set MONGODB_URI in your .env.local file.',
+          error: 'MongoDB is not connected. Please ensure MONGODB_URI is set.',
         },
         { status: 503 }
       );
@@ -71,7 +67,6 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
 
-    // Basic validation
     if (!body.name || !body.location || !body.priceFrom) {
       return NextResponse.json(
         {
@@ -82,7 +77,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Auto-generate slug if not provided
     const slug =
       body.slug ||
       body.name
@@ -90,7 +84,6 @@ export async function POST(req: NextRequest) {
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/(^-|-$)+/g, '');
 
-    // Check if slug already exists
     const existing = await ProjectModel.findOne({ slug });
     if (existing) {
       return NextResponse.json(

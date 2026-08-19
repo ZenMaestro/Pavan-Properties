@@ -18,12 +18,33 @@ if (!global.mongooseCache) {
   global.mongooseCache = cached;
 }
 
+// Timeout helper to guarantee fail-fast on serverless functions
+function timeoutPromise<T>(promise: Promise<T>, ms: number, fallbackValue: T): Promise<T> {
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => {
+      console.warn(`⏳ MongoDB connection timed out after ${ms}ms. Using fast fallback.`);
+      resolve(fallbackValue);
+    }, ms);
+
+    promise
+      .then((res) => {
+        clearTimeout(timer);
+        resolve(res);
+      })
+      .catch((err) => {
+        clearTimeout(timer);
+        console.error('❌ MongoDB connection error:', err.message);
+        resolve(fallbackValue);
+      });
+  });
+}
+
 export async function connectToDatabase(): Promise<typeof mongoose | null> {
   if (!MONGODB_URI) {
     return null;
   }
 
-  if (cached.conn) {
+  if (cached.conn && mongoose.connection.readyState === 1) {
     return cached.conn;
   }
 
@@ -31,22 +52,22 @@ export async function connectToDatabase(): Promise<typeof mongoose | null> {
     const opts = {
       bufferCommands: false,
       maxPoolSize: 10,
-      serverSelectionTimeoutMS: 5000, // 5s timeout to prevent hanging on Vercel
+      connectTimeoutMS: 3000,
+      serverSelectionTimeoutMS: 3000, // 3 seconds max
+      socketTimeoutMS: 4000,
     };
 
-    cached.promise = mongoose
-      .connect(MONGODB_URI, opts)
-      .then((mongooseInstance) => {
-        console.log('✅ Connected to MongoDB successfully.');
-        return mongooseInstance;
-      })
-      .catch((err) => {
-        console.error('❌ Failed to connect to MongoDB:', err);
-        cached.promise = null;
-        return null;
-      });
+    const rawConnect = mongoose.connect(MONGODB_URI, opts).then((inst) => {
+      console.log('✅ Connected to MongoDB Atlas successfully.');
+      return inst;
+    });
+
+    cached.promise = timeoutPromise<typeof mongoose | null>(rawConnect, 3500, null);
   }
 
   cached.conn = await cached.promise;
+  if (!cached.conn) {
+    cached.promise = null; // reset cache on failure so next request can retry
+  }
   return cached.conn;
 }

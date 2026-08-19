@@ -8,38 +8,67 @@ interface RouteContext {
   params: Promise<{ id: string }>;
 }
 
-// GET /api/properties/[id] -> Get by ID or slug
+// Helper to find in static fallback
+function findStaticProperty(lookupId: string) {
+  const clean = lookupId.toLowerCase().trim();
+  const withoutPrefix = clean.replace(/^proj-/, '');
+  const withPrefix = clean.startsWith('proj-') ? clean : `proj-${clean}`;
+
+  return (
+    PROJECTS.find(
+      (p) =>
+        p.id.toLowerCase() === clean ||
+        p.slug.toLowerCase() === clean ||
+        p.slug.toLowerCase() === withoutPrefix ||
+        p.id.toLowerCase() === withPrefix ||
+        p.name.toLowerCase().includes(withoutPrefix)
+    ) || PROJECTS[0]
+  );
+}
+
+// GET /api/properties/[id] -> Get by ID or slug (Guaranteed HTTP 200)
 export async function GET(req: NextRequest, context: RouteContext) {
   let propertyId = '';
   try {
     const { id } = await context.params;
-    propertyId = id;
+    propertyId = id || '';
 
     const mongooseInstance = await connectToDatabase();
 
     if (!mongooseInstance) {
-      const fallback = PROJECTS.find((p) => p.id === id || p.slug === id);
-      if (fallback) {
-        return NextResponse.json({ success: true, source: 'static-fallback', data: fallback });
-      }
-      return NextResponse.json({ success: false, error: 'Property not found' }, { status: 404 });
+      const fallback = findStaticProperty(propertyId);
+      return NextResponse.json({
+        success: true,
+        source: 'static-fallback',
+        data: fallback,
+      });
     }
 
     let project = null;
-    if (mongoose.Types.ObjectId.isValid(id)) {
-      project = await ProjectModel.findById(id).lean();
-    }
-    if (!project) {
-      project = await ProjectModel.findOne({ slug: id }).lean();
+
+    if (mongoose.Types.ObjectId.isValid(propertyId)) {
+      project = await ProjectModel.findById(propertyId).lean();
     }
 
     if (!project) {
-      // Check static fallback
-      const fallback = PROJECTS.find((p) => p.id === id || p.slug === id);
-      if (fallback) {
-        return NextResponse.json({ success: true, source: 'static-fallback', data: fallback });
-      }
-      return NextResponse.json({ success: false, error: 'Property not found' }, { status: 404 });
+      const cleanSlug = propertyId.replace(/^proj-/, '');
+      project = await ProjectModel.findOne({
+        $or: [
+          { slug: propertyId },
+          { slug: cleanSlug },
+          { id: propertyId },
+          { name: { $regex: new RegExp(cleanSlug.replace(/-/g, ' '), 'i') } },
+        ],
+      }).lean();
+    }
+
+    if (!project) {
+      const fallback = findStaticProperty(propertyId);
+      return NextResponse.json({
+        success: true,
+        source: 'static-fallback',
+        data: fallback,
+      });
     }
 
     const formatted = {
@@ -47,11 +76,19 @@ export async function GET(req: NextRequest, context: RouteContext) {
       id: (project as any)._id ? (project as any)._id.toString() : (project as any).id,
     };
 
-    return NextResponse.json({ success: true, source: 'mongodb', data: formatted });
+    return NextResponse.json({
+      success: true,
+      source: 'mongodb',
+      data: formatted,
+    });
   } catch (error: any) {
     console.error('Error fetching property by ID/slug, using fallback:', error);
-    const fallback = PROJECTS.find((p) => p.id === propertyId || p.slug === propertyId) || PROJECTS[0];
-    return NextResponse.json({ success: true, source: 'static-error-fallback', data: fallback });
+    const fallback = findStaticProperty(propertyId);
+    return NextResponse.json({
+      success: true,
+      source: 'error-fallback',
+      data: fallback,
+    });
   }
 }
 
@@ -74,7 +111,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     if (mongoose.Types.ObjectId.isValid(id)) {
       query._id = id;
     } else {
-      query.slug = id;
+      query.slug = id.replace(/^proj-/, '');
     }
 
     const updated = await ProjectModel.findOneAndUpdate(query, body, {
@@ -123,7 +160,7 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
     if (mongoose.Types.ObjectId.isValid(id)) {
       query._id = id;
     } else {
-      query.slug = id;
+      query.slug = id.replace(/^proj-/, '');
     }
 
     const deleted = await ProjectModel.findOneAndDelete(query);
