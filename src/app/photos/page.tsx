@@ -1,16 +1,33 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PROJECTS } from '@/data/projects';
+import { Project } from '@/types';
 import { Eye, MapPin } from 'lucide-react';
 import { Lightbox } from '@/components/common/Lightbox';
 import Link from 'next/link';
 
 export default function PhotosPage() {
+  const [properties, setProperties] = useState<Project[]>(PROJECTS);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const allPhotos = PROJECTS.flatMap(p => 
-    p.images.map((img) => ({
+  useEffect(() => {
+    async function loadProperties() {
+      try {
+        const res = await fetch('/api/properties');
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+          setProperties(data.data);
+        }
+      } catch (err) {
+        console.warn('Failed to load properties for gallery.', err);
+      }
+    }
+    loadProperties();
+  }, []);
+
+  const allPhotos = properties.flatMap(p => 
+    (p.images || []).map((img) => ({
       url: img,
       projectName: p.name,
       projectSlug: p.slug,

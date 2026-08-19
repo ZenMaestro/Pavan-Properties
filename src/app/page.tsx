@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   FileCheck, 
@@ -17,11 +17,28 @@ import {
   ArrowUpRight
 } from 'lucide-react';
 import { PROJECTS, BROKER_INFO } from '@/data/projects';
+import { Project } from '@/types';
 import { ProjectCard } from '@/components/common/ProjectCard';
 import { BookSlotForm } from '@/components/common/BookSlotForm';
 import { AnviHomesShowcase } from '@/components/common/AnviHomesShowcase';
 
 export default function HomePage() {
+  const [properties, setProperties] = useState<Project[]>(PROJECTS);
+
+  useEffect(() => {
+    async function loadProperties() {
+      try {
+        const res = await fetch('/api/properties');
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+          setProperties(data.data);
+        }
+      } catch (err) {
+        console.warn('Failed to load dynamic properties from MongoDB, using bundled data.', err);
+      }
+    }
+    loadProperties();
+  }, []);
   return (
     <div className="space-y-20 pb-20">
       
@@ -129,7 +146,7 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 border-b border-[#eae3e0] pb-4">
           <div>
             <span className="text-xs font-semibold uppercase tracking-wider text-[#715343] block">
-              Current Portfolio ({PROJECTS.length} Active Developments)
+              Current Portfolio ({properties.length} Active Developments)
             </span>
             <h2 className="font-serif font-bold text-2xl sm:text-3xl text-[#142334] mt-1">
               Verified Residential Townships
@@ -146,8 +163,8 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PROJECTS.map(project => (
-            <ProjectCard key={project.id} project={project} />
+          {properties.map(project => (
+            <ProjectCard key={project.id || project.slug} project={project} />
           ))}
         </div>
       </section>

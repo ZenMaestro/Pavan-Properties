@@ -47,6 +47,9 @@ export const Navbar: React.FC = () => {
           <Link href="/contact" className="hover:text-[#a67d64] transition-colors">
             Contact
           </Link>
+          <Link href="/admin" className="text-xs px-2.5 py-1 rounded bg-[#f4f0ea] hover:bg-[#eae3e0] text-[#142334] font-semibold border border-[#eae3e0] transition-colors">
+            Admin
+          </Link>
         </nav>
 
         {/* Quick Actions (Direct Phone & Book Visit) */}
@@ -122,6 +125,13 @@ export const Navbar: React.FC = () => {
             className="block py-2 text-sm font-medium text-[#142334] hover:text-[#a67d64]"
           >
             Contact
+          </Link>
+          <Link
+            href="/admin"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block py-2 text-sm font-semibold text-[#a67d64] hover:text-[#142334]"
+          >
+            Admin Management Portal →
           </Link>
 
           <div className="pt-3 border-t border-[#eae3e0] flex flex-col gap-2">

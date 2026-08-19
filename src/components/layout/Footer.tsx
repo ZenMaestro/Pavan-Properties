@@ -49,6 +49,9 @@ export const Footer: React.FC = () => {
               <li>
                 <Link href="/contact" className="hover:text-[#ffffff] transition-colors">Schedule Visit / Contact</Link>
               </li>
+              <li>
+                <Link href="/admin" className="text-[#c9ad98] hover:text-[#ffffff] font-medium transition-colors">Admin Portal (MongoDB)</Link>
+              </li>
             </ul>
           </div>
 

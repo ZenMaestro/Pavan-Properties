@@ -1,23 +1,51 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { PROJECTS, BROKER_INFO } from '@/data/projects';
+import { Project, VerifiedDoc } from '@/types';
 import { MapPin, ArrowLeft, Check, FileCheck, Phone, Eye, Calendar, Landmark, Shield } from 'lucide-react';
 import { DocumentViewerModal } from '@/components/common/DocumentViewerModal';
 import { Lightbox } from '@/components/common/Lightbox';
 import { BookSlotForm } from '@/components/common/BookSlotForm';
-import { VerifiedDoc } from '@/types';
 
 export default function ProjectDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
 
-  const project = PROJECTS.find(p => p.slug === slug);
+  const initialProject = PROJECTS.find(p => p.slug === slug);
+  const [project, setProject] = useState<Project | null>(initialProject || null);
+  const [loading, setLoading] = useState(!initialProject);
 
   const [activeDoc, setActiveDoc] = useState<VerifiedDoc | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    async function fetchProject() {
+      if (!slug) return;
+      try {
+        const res = await fetch(`/api/properties/${slug}`);
+        const data = await res.json();
+        if (data.success && data.data) {
+          setProject(data.data);
+        }
+      } catch (err) {
+        console.warn('Failed to fetch project from API, using fallback if available.', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProject();
+  }, [slug]);
+
+  if (loading && !project) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-24 text-center space-y-4">
+        <h1 className="text-xl font-bold font-serif text-[#142334]">Loading Property Details...</h1>
+      </div>
+    );
+  }
 
   if (!project) {
     return (
