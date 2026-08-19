@@ -31,6 +31,7 @@ export async function connectToDatabase(): Promise<typeof mongoose | null> {
     const opts = {
       bufferCommands: false,
       maxPoolSize: 10,
+      serverSelectionTimeoutMS: 5000, // 5s timeout to prevent hanging on Vercel
     };
 
     cached.promise = mongoose

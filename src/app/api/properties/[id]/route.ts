@@ -10,14 +10,17 @@ interface RouteContext {
 
 // GET /api/properties/[id] -> Get by ID or slug
 export async function GET(req: NextRequest, context: RouteContext) {
+  let propertyId = '';
   try {
     const { id } = await context.params;
+    propertyId = id;
+
     const mongooseInstance = await connectToDatabase();
 
     if (!mongooseInstance) {
       const fallback = PROJECTS.find((p) => p.id === id || p.slug === id);
       if (fallback) {
-        return NextResponse.json({ success: true, source: 'static', data: fallback });
+        return NextResponse.json({ success: true, source: 'static-fallback', data: fallback });
       }
       return NextResponse.json({ success: false, error: 'Property not found' }, { status: 404 });
     }
@@ -34,7 +37,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
       // Check static fallback
       const fallback = PROJECTS.find((p) => p.id === id || p.slug === id);
       if (fallback) {
-        return NextResponse.json({ success: true, source: 'static', data: fallback });
+        return NextResponse.json({ success: true, source: 'static-fallback', data: fallback });
       }
       return NextResponse.json({ success: false, error: 'Property not found' }, { status: 404 });
     }
@@ -44,10 +47,11 @@ export async function GET(req: NextRequest, context: RouteContext) {
       id: (project as any)._id ? (project as any)._id.toString() : (project as any).id,
     };
 
-    return NextResponse.json({ success: true, data: formatted });
+    return NextResponse.json({ success: true, source: 'mongodb', data: formatted });
   } catch (error: any) {
-    console.error('Error fetching property by ID/slug:', error);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    console.error('Error fetching property by ID/slug, using fallback:', error);
+    const fallback = PROJECTS.find((p) => p.id === propertyId || p.slug === propertyId) || PROJECTS[0];
+    return NextResponse.json({ success: true, source: 'static-error-fallback', data: fallback });
   }
 }
 
@@ -59,7 +63,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
 
     if (!mongooseInstance) {
       return NextResponse.json(
-        { success: false, error: 'MongoDB is not connected.' },
+        { success: false, error: 'MongoDB is not connected. Check MONGODB_URI.' },
         { status: 503 }
       );
     }
@@ -74,7 +78,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
     }
 
     const updated = await ProjectModel.findOneAndUpdate(query, body, {
-      new: true,
+      returnDocument: 'after',
       runValidators: true,
     });
 
@@ -110,7 +114,7 @@ export async function DELETE(req: NextRequest, context: RouteContext) {
 
     if (!mongooseInstance) {
       return NextResponse.json(
-        { success: false, error: 'MongoDB is not connected.' },
+        { success: false, error: 'MongoDB is not connected. Check MONGODB_URI.' },
         { status: 503 }
       );
     }
