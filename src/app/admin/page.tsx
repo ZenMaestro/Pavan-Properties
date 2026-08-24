@@ -22,6 +22,7 @@ import {
   Eye
 } from 'lucide-react';
 import { Project } from '@/types';
+import { ImageUploadZone } from '@/components/admin/ImageUploadZone';
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -55,8 +56,8 @@ export default function AdminPage() {
     reraId: 'AP RERA Approved',
     overview: '',
     highlightsText: '',
-    imagesText: '/projects/anvi-homes-1.jpg\n/projects/anvi-homes-2.jpg',
-    approvalsText: 'CRDA Approved Layout\nAP RERA Registered\nBank Loan Facility',
+    images: ['/projects/anvi-homes-1.jpg', '/projects/anvi-homes-2.jpg'],
+    approvalsText: 'CRDA Approved Layout\nAP RERA Registered\nBank Loan Facility Available',
     bankTieUpsText: 'State Bank of India (SBI)\nHDFC Bank\nICICI Bank',
   };
 
@@ -151,7 +152,7 @@ export default function AdminPage() {
       reraId: property.reraId || 'AP RERA Approved',
       overview: property.overview || '',
       highlightsText: (property.highlights || []).join('\n'),
-      imagesText: (property.images || []).join('\n'),
+      images: Array.isArray(property.images) && property.images.length > 0 ? property.images : ['/projects/anvi-homes-1.jpg'],
       approvalsText: (property.approvals || []).join('\n'),
       bankTieUpsText: (property.bankTieUps || []).join('\n'),
     });
@@ -168,11 +169,6 @@ export default function AdminPage() {
       .map((s) => s.trim())
       .filter(Boolean);
 
-    const images = formData.imagesText
-      .split('\n')
-      .map((s) => s.trim())
-      .filter(Boolean);
-
     const approvals = formData.approvalsText
       .split('\n')
       .map((s) => s.trim())
@@ -182,6 +178,10 @@ export default function AdminPage() {
       .split('\n')
       .map((s) => s.trim())
       .filter(Boolean);
+
+    const images = Array.isArray(formData.images) && formData.images.length > 0
+      ? formData.images
+      : ['/projects/anvi-homes-1.jpg'];
 
     const payload = {
       name: formData.name,
@@ -197,7 +197,7 @@ export default function AdminPage() {
       reraId: formData.reraId,
       overview: formData.overview,
       highlights,
-      images: images.length > 0 ? images : ['/projects/anvi-homes-1.jpg'],
+      images,
       approvals,
       bankTieUps,
     };
@@ -748,17 +748,13 @@ export default function AdminPage() {
                 />
               </div>
 
-              {/* Images (1 URL per line) */}
-              <div>
-                <label className="block font-semibold text-[#142334] mb-1">
-                  Image URLs (One per line)
-                </label>
-                <textarea
-                  rows={3}
-                  value={formData.imagesText}
-                  onChange={(e) => setFormData({ ...formData, imagesText: e.target.value })}
-                  placeholder="/projects/anvi-homes-1.jpg&#10;/projects/anvi-homes-2.jpg&#10;/projects/anvi-homes-3.jpg"
-                  className="w-full px-3 py-2 rounded-lg bg-[#ffffff] border border-[#eae3e0] text-[#142334] font-mono text-[11px] focus:outline-none focus:border-[#c9ad98]"
+              {/* Direct Image Upload Component */}
+              <div className="pt-2 border-t border-[#eae3e0]">
+                <ImageUploadZone
+                  images={formData.images}
+                  onChange={(newImages) => setFormData({ ...formData, images: newImages })}
+                  label="Property Photographs & Layout Drawings"
+                  maxImages={20}
                 />
               </div>
 
