@@ -181,7 +181,7 @@ export const BROKER_INFO = {
   totalLoansFacilitated: '₹180+ Crores',
   phone: '+91 90304 44978',
   whatsapp: '919030444978',
-  email: 'contact@pavanproperties.in',
+  email: 'propertiespavan@gmail.com',
   officeAddress: 'Door No. 40-1-12, 3rd Floor, Opposite PVP Square Mall, M.G. Road, Vijayawada, Andhra Pradesh - 520010',
   bio: 'For over 15 years, Pavan Properties has pioneered verified real estate advisory across Andhra Pradesh. We specialize in APCRDA approved layouts and AP RERA registered developments with 100-foot road connectivity, verified documentation, and direct bank pre-approvals.'
 };
