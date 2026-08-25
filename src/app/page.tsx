@@ -54,15 +54,15 @@ export default function HomePage() {
               
               <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#715343]">
                 <MapPin className="w-3.5 h-3.5 text-[#a67d64]" />
-                <span>Amaravati & Vijayawada • Real Estate Advisory</span>
+                <span>Pavan Properties in Vijayawada • CRDA & AP RERA Advisory</span>
               </div>
 
               <div className="space-y-3">
                 <h1 className="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-[#142334] leading-[1.15]">
-                  Document-Verified Properties in Amaravati & Vijayawada.
+                  Pavan Properties in Vijayawada — Verified Plots & Luxury Villas.
                 </h1>
                 <p className="text-base sm:text-lg text-[#344f6d] leading-relaxed">
-                  Every layout listed here has an official <strong className="text-[#142334] font-semibold">APCRDA Sanction Copy</strong>, transparent title verification, and direct site-visit coordination by Pavan Kumar.
+                  Explore official <strong className="text-[#142334] font-semibold">APCRDA Approved Layouts (LP No. 30/2025)</strong> on the 100ft Airport Road (Kesarapalli) and prime Amaravati corridors. Transparent 30-year title verification and direct site visits with Pavan Kumar.
                 </p>
               </div>
 
