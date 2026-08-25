@@ -18,6 +18,7 @@ import { Project } from '@/types';
 import { ProjectCard } from '@/components/common/ProjectCard';
 import { BookSlotForm } from '@/components/common/BookSlotForm';
 import { AnviHomesShowcase } from '@/components/common/AnviHomesShowcase';
+import { RealEstateFAQ } from '@/components/common/RealEstateFAQ';
 
 export default function HomePage() {
   const [properties, setProperties] = useState<Project[]>(PROJECTS);
@@ -255,6 +256,11 @@ export default function HomePage() {
           </div>
 
         </div>
+      </section>
+
+      {/* SECTION: BUYER FAQS & DUE DILIGENCE GUIDE (GOOGLE RICH SNIPPETS) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <RealEstateFAQ />
       </section>
 
       {/* SECTION 4: BOOK APPOINTMENT & CONTACT */}
