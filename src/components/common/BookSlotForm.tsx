@@ -53,10 +53,17 @@ export const BookSlotForm: React.FC<BookSlotFormProps> = ({
     setLoading(true);
 
     try {
+      const selectedProject = PROJECTS.find(p => p.slug === formData.projectInterest || p.id === formData.projectInterest);
+      const projectName = selectedProject?.name || formData.projectInterest || 'General Inquiry';
+
       const response = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          phone: cleanPhone,
+          projectInterest: projectName,
+        })
       });
 
       const data = await response.json();
