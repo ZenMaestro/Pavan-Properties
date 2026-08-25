@@ -14,8 +14,15 @@ export const Footer: React.FC = () => {
           
           {/* Col 1: Broker Info */}
           <div className="space-y-3 md:col-span-1">
-            <div className="font-serif font-bold text-base text-[#ffffff] tracking-wide">
-              PAVAN PROPERTIES
+            <div className="flex items-center gap-2.5">
+              <img
+                src="/logo.png"
+                alt="Pavan Properties Logo"
+                className="h-10 w-10 object-contain rounded-lg bg-white/10 p-1 border border-white/20"
+              />
+              <div className="font-serif font-bold text-base text-[#ffffff] tracking-wide">
+                PAVAN PROPERTIES
+              </div>
             </div>
             <p className="text-[#a7bdd2] leading-relaxed">
               Licensed real estate advisory specializing in CRDA sanctioned residential townships and RERA registered projects across Amaravati and Vijayawada.

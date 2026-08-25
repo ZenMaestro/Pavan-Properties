@@ -451,9 +451,11 @@ export default function AdminPage() {
       <div className="min-h-[80vh] flex items-center justify-center px-4 py-16 bg-[#f9f6ee]">
         <div className="w-full max-w-md bg-[#ffffff] rounded-2xl border border-[#eae3e0] shadow-xl p-8 space-y-6 text-center">
           
-          <div className="w-14 h-14 rounded-full bg-[#f4f0ea] border border-[#c9ad98] flex items-center justify-center mx-auto text-[#142334]">
-            <Lock className="w-6 h-6 text-[#a67d64]" />
-          </div>
+          <img
+            src="/logo.png"
+            alt="Pavan Properties"
+            className="w-16 h-16 object-contain mx-auto rounded-xl p-1 bg-[#f4f0ea] border border-[#c9ad98] shadow-sm"
+          />
 
           <div className="space-y-1.5">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#715343]">

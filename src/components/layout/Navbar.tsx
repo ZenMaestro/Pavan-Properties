@@ -14,9 +14,11 @@ export const Navbar: React.FC = () => {
         
         {/* Brand Logo & Editorial Title */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-lg bg-[#142334] text-[#f9f6ee] flex items-center justify-center font-serif font-bold text-lg tracking-wider shadow-sm">
-            P
-          </div>
+          <img
+            src="/logo.png"
+            alt="Pavan Properties Logo"
+            className="h-11 w-11 object-contain rounded-lg bg-white/50 border border-[#eae3e0] p-1 shadow-sm transition-transform group-hover:scale-105"
+          />
           <div>
             <div className="font-serif font-bold text-lg tracking-tight text-[#142334] leading-tight">
               PAVAN PROPERTIES
