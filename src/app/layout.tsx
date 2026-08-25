@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'google-site-verification-token', // User can add their Search Console code here
+    google: 'HUeJiVeao2X3EoKYdDNWVm3VudTm3MqodDnUH_Dbw2g',
   },
 };
 
@@ -209,6 +209,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <meta name="google-site-verification" content="HUeJiVeao2X3EoKYdDNWVm3VudTm3MqodDnUH_Dbw2g" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
